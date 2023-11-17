@@ -3,7 +3,7 @@ from boto3.dynamodb.conditions import Key, Attr
 from .models import Event, Group, Member, Comment
 
 # Initialize a DynamoDB resource
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
 
 def load_data_to_dynamodb(table_name, data):

@@ -7,6 +7,10 @@ from src.operations import (add_event, update_event, delete_event, get_events, g
 app = FastAPI()
 
 
+@app.get("/")
+def root():
+    return {"message": "Hello World"}
+
 # Route for listing or creating events
 @app.get("/api/events")
 def list_events(limit: int = 10, skip: int = 0):
