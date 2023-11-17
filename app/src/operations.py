@@ -13,10 +13,10 @@ def load_data_to_dynamodb(table_name, data):
 
 
 # Replace with your table names
-events_table = dynamodb.Table('EventsTable')
-groups_table = dynamodb.Table('GroupsTable')
-members_table = dynamodb.Table('MembersTable')
-comments_table = dynamodb.Table('CommentsTable')
+events_table = dynamodb.Table('Event')
+groups_table = dynamodb.Table('Group')
+members_table = dynamodb.Table('Member')
+comments_table = dynamodb.Table('Comment')
 
 # CRUD operations for events
 def add_event(event_data: Event) -> dict:
