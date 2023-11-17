@@ -1,15 +1,61 @@
 # Import necessary libraries and models
 import boto3
-from .models import Event, Group, Member, Comment  # Replace with the actual path to your models
+from models import Event, Group, Member, Comment 
 
 # Initialize DynamoDB Client
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+
+# Function to create a DynamoDB table
+def create_table(name, key_schema, attribute_definitions, read_capacity_units=1, write_capacity_units=1):
+    try:
+        table = dynamodb.create_table(
+            TableName=name,
+            KeySchema=key_schema,
+            AttributeDefinitions=attribute_definitions,
+            ProvisionedThroughput={
+                'ReadCapacityUnits': read_capacity_units,
+                'WriteCapacityUnits': write_capacity_units
+            }
+        )
+        table.meta.client.get_waiter('table_exists').wait(TableName=name)
+        print(f"Table {name} created successfully.")
+    except Exception as e:
+        print(f"Error creating table {name}: {e}")
+
+# Event Table
+create_table(
+    name="Event",
+    key_schema=[{'AttributeName': 'event_id', 'KeyType': 'HASH'}],  # Partition key
+    attribute_definitions=[{'AttributeName': 'event_id', 'AttributeType': 'N'}]
+)
+
+# Group Table
+create_table(
+    name="Group",
+    key_schema=[{'AttributeName': 'group_id', 'KeyType': 'HASH'}],  # Partition key
+    attribute_definitions=[{'AttributeName': 'group_id', 'AttributeType': 'N'}]
+)
+
+# Member Table
+create_table(
+    name="Member",
+    key_schema=[{'AttributeName': 'user_id', 'KeyType': 'HASH'}, {'AttributeName': 'event_id', 'KeyType': 'RANGE'}],  # Composite key
+    attribute_definitions=[{'AttributeName': 'user_id', 'AttributeType': 'N'}, {'AttributeName': 'event_id', 'AttributeType': 'N'}]
+)
+
+# Comment Table
+create_table(
+    name="Comment",
+    key_schema=[{'AttributeName': 'comment_id', 'KeyType': 'HASH'}],  # Partition key
+    attribute_definitions=[{'AttributeName': 'comment_id', 'AttributeType': 'N'}]
+)
+
 
 # Function to Load Data into DynamoDB
 def load_data_to_dynamodb(table_name, data):
     table = dynamodb.Table(table_name)
     for item in data:
-        table.put_item(Item=item.dict())
+        table.put_item(Item=item.model_dump())
         
 events = [
     Event(event_id=1, group_id=101, attended_person=[1, 2], not_attended_person=[3], no_response_person=[4, 5]),
@@ -43,9 +89,26 @@ comments = [
     # Add more comments as needed
 ]
 
+def scan_all_events():
+    table = dynamodb.Table('Event')
+
+    try:
+        response = table.scan()
+        items = response.get('Items', [])
+        if items:
+            return items
+        else:
+            return "No events found in the table."
+    except Exception as e:
+        return f"Error scanning table: {e}"
+
+
 # Load Data into DynamoDB
 if __name__ == "__main__":
-    load_data_to_dynamodb('EventsTable', events)
-    load_data_to_dynamodb('GroupsTable', groups)
-    load_data_to_dynamodb('MembersTable', members)
-    load_data_to_dynamodb('CommentsTable', comments)
+    load_data_to_dynamodb('Event', events)
+    load_data_to_dynamodb('Group', groups)
+    load_data_to_dynamodb('Member', members)
+    load_data_to_dynamodb('Comment', comments)
+    all_events = scan_all_events()
+    for event in all_events:
+        print(event)
