@@ -3,6 +3,7 @@ from typing import List
 from src.models import Event, Group, Member, Comment
 from src.operations import (add_event, update_event, delete_event, get_events, get_event,
                          get_group, get_members, get_comments, add_comment)
+import uvicorn
 
 app = FastAPI()
 
@@ -63,3 +64,7 @@ def read_event_comments(event_id: int):
 @app.post("/api/events/{event_id}/comments")
 def add_event_comment(event_id: int, comment: Comment):
     return add_comment(event_id, comment)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8011)
