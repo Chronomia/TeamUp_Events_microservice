@@ -3,7 +3,7 @@ import boto3
 from .models import Event, Group, Member, Comment  # Replace with the actual path to your models
 
 # Initialize DynamoDB Client
-dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
 # Function to Load Data into DynamoDB
 def load_data_to_dynamodb(table_name, data):
