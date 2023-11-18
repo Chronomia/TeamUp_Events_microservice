@@ -13,6 +13,7 @@ def delete_table(table_name):
     try:
         # Delete the table
         table.delete()
+        table.wait_until_not_exists()
         print(f"Table {table_name} deleted successfully.")
     except Exception as e:
         # Handle exceptions
