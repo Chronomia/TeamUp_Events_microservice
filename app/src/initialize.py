@@ -3,7 +3,7 @@ import boto3
 from models import Event, Group, Member, Comment 
 
 # Initialize DynamoDB Client
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 
 tables_to_delete = ["Event", "Group", "Member", "Comment"]
 

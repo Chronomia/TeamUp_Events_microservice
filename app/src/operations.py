@@ -1,9 +1,11 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from .models import Event, Group, Member, Comment
+from models import Event, Group, Member, Comment
+from sns import sns_add_event
+
 
 # Initialize a DynamoDB resource
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 
 
 def load_data_to_dynamodb(table_name, data):
@@ -22,6 +24,7 @@ comments_table = dynamodb.Table('Comment')
 def add_event(event_data: Event) -> dict:
     event_dict = event_data.model_dump()
     events_table.put_item(Item=event_dict)
+    sns_add_event(event_dict)
     return event_dict
 
 def get_event(event_id: int) -> dict:
