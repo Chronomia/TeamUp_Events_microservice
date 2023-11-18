@@ -16,7 +16,8 @@ class Group(BaseModel):
 class Member(BaseModel):
     user_id: int
     username: str
-    event_id: int  # a member is associated with an event
+    attended_events: List[int]
+    attended_groups: List[int]
 
 class Comment(BaseModel):
     comment_id: int

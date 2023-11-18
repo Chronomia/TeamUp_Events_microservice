@@ -5,6 +5,14 @@ from models import Event, Group, Member, Comment
 # Initialize DynamoDB Client
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
+try: 
+    dynamodb.delete_table(TableName="Event")
+    dynamodb.delete_table(TableName="Group")
+    dynamodb.delete_table(TableName="Member")
+    dynamodb.delete_table(TableName="Comment")
+except: 
+    pass
+
 # Function to create a DynamoDB table
 def create_table(name, key_schema, attribute_definitions, read_capacity_units=1, write_capacity_units=1):
     try:
@@ -39,14 +47,14 @@ create_table(
 # Member Table
 create_table(
     name="Member",
-    key_schema=[{'AttributeName': 'user_id', 'KeyType': 'HASH'}, {'AttributeName': 'event_id', 'KeyType': 'RANGE'}],  # Composite key
-    attribute_definitions=[{'AttributeName': 'user_id', 'AttributeType': 'N'}, {'AttributeName': 'event_id', 'AttributeType': 'N'}]
+    key_schema=[{'AttributeName': 'user_id', 'KeyType': 'HASH'}], 
+    attribute_definitions=[{'AttributeName': 'user_id', 'AttributeType': 'N'}]
 )
 
 # Comment Table
 create_table(
     name="Comment",
-    key_schema=[{'AttributeName': 'comment_id', 'KeyType': 'HASH'}],  # Partition key
+    key_schema=[{'AttributeName': 'comment_id', 'KeyType': 'HASH'}, {'AttributeName': 'event_id', 'KeyType': 'RANGE'}],  # Partition key
     attribute_definitions=[{'AttributeName': 'comment_id', 'AttributeType': 'N'}]
 )
 
@@ -72,11 +80,11 @@ groups = [
 ]
 
 members = [
-    Member(user_id=1, username="User1", event_id=1),
-    Member(user_id=2, username="User2", event_id=1),
-    Member(user_id=3, username="User3", event_id=2),
-    Member(user_id=4, username="User4", event_id=2),
-    Member(user_id=5, username="User5", event_id=3),
+    Member(user_id=1, username="User1", attended_events=[1]),
+    Member(user_id=2, username="User2", attended_events=[1]),
+    Member(user_id=3, username="User3", attended_events=[2]),
+    Member(user_id=4, username="User4", attended_events=[2]),
+    Member(user_id=5, username="User5", attended_events=[3]),
     # Add more members as needed
 ]
 
