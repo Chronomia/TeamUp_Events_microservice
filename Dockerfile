@@ -12,7 +12,12 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 #
 COPY app /code/app
 
-EXPOSE 8002
+EXPOSE 8011
 
-#
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8002"]
+WORKDIR /code/app/src
+
+CMD ["python3", "initialize.py"]
+
+WORKDIR /code/app/
+
+CMD ["python3", "main.py"]
