@@ -5,13 +5,22 @@ from models import Event, Group, Member, Comment
 # Initialize DynamoDB Client
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
-try: 
-    dynamodb.delete_table(TableName="Event")
-    dynamodb.delete_table(TableName="Group")
-    dynamodb.delete_table(TableName="Member")
-    dynamodb.delete_table(TableName="Comment")
-except: 
-    pass
+tables_to_delete = ["Event", "Group", "Member", "Comment"]
+
+# Function to delete a table
+def delete_table(table_name):
+    table = dynamodb.Table(table_name)
+    try:
+        # Delete the table
+        table.delete()
+        print(f"Table {table_name} deleted successfully.")
+    except Exception as e:
+        # Handle exceptions
+        print(f"Error deleting table {table_name}: {e}")
+
+# Delete each table in the list
+for table_name in tables_to_delete:
+    delete_table(table_name)
 
 # Function to create a DynamoDB table
 def create_table(name, key_schema, attribute_definitions, read_capacity_units=1, write_capacity_units=1):
@@ -54,8 +63,8 @@ create_table(
 # Comment Table
 create_table(
     name="Comment",
-    key_schema=[{'AttributeName': 'comment_id', 'KeyType': 'HASH'}, {'AttributeName': 'event_id', 'KeyType': 'RANGE'}],  # Partition key
-    attribute_definitions=[{'AttributeName': 'comment_id', 'AttributeType': 'N'}]
+    key_schema=[{'AttributeName': 'event_id', 'KeyType': 'HASH'}, {'AttributeName': 'comment_id', 'KeyType': 'RANGE'}],  # Partition key
+    attribute_definitions=[{'AttributeName': 'comment_id', 'AttributeType': 'N'},  {'AttributeName': 'event_id', 'AttributeType': 'N'}]
 )
 
 
@@ -76,15 +85,22 @@ groups = [
     Group(group_id=101, name="Group 1", description="Description for Group 1"),
     Group(group_id=102, name="Group 2", description="Description for Group 2"),
     Group(group_id=103, name="Group 3", description="Description for Group 3"),
+    Group(group_id=104, name="Group 4", description="Description for Group 4"),
+    Group(group_id=105, name="Group 5", description="Description for Group 5"),
+    Group(group_id=106, name="Group 6", description="Description for Group 6"),
+    Group(group_id=107, name="Group 7", description="Description for Group 7"),
+    Group(group_id=108, name="Group 8", description="Description for Group 8"),
+    Group(group_id=109, name="Group 9", description="Description for Group 9"),
+    Group(group_id=110, name="Group 10", description="Description for Group 10")
     # Add more groups as needed
 ]
 
 members = [
-    Member(user_id=1, username="User1", attended_events=[1]),
-    Member(user_id=2, username="User2", attended_events=[1]),
-    Member(user_id=3, username="User3", attended_events=[2]),
-    Member(user_id=4, username="User4", attended_events=[2]),
-    Member(user_id=5, username="User5", attended_events=[3]),
+    Member(user_id=1, username="User1", attended_events=[1], attended_groups=[101, 102]),
+    Member(user_id=2, username="User2", attended_events=[1], attended_groups=[102]),
+    Member(user_id=3, username="User3", attended_events=[2], attended_groups=[103]),
+    Member(user_id=4, username="User4", attended_events=[2], attended_groups=[101, 103]),
+    Member(user_id=5, username="User5", attended_events=[3], attended_groups=[104]),
     # Add more members as needed
 ]
 
