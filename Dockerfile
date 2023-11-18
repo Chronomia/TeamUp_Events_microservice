@@ -14,10 +14,6 @@ COPY app /code/app
 
 EXPOSE 8011
 
-WORKDIR /code/app/src
+WORKDIR /code/app
 
-CMD ["python3", "initialize.py"]
-
-WORKDIR /code/app/
-
-CMD ["python3", "main.py"]
+CMD ["./start.sh"]
