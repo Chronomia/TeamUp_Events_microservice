@@ -1,7 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from models import Event, Group, Member, Comment
-from sns import sns_add_event
+from .models import Event, Group, Member, Comment
+from .sns import sns_add_event
 
 
 # Initialize a DynamoDB resource
