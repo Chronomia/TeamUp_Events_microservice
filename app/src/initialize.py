@@ -97,22 +97,32 @@ def load_event_to_dynamodb(csv_file):
 		
 
 groups = [
-	Group(group_id=101, name="Group 1", description="Description for Group 1"),
-	Group(group_id=102, name="Group 2", description="Description for Group 2"),
-	Group(group_id=103, name="Group 3", description="Description for Group 3"),
-	Group(group_id=104, name="Group 4", description="Description for Group 4"),
-	Group(group_id=105, name="Group 5", description="Description for Group 5"),
-	# Add more groups as needed
+	Group(group_id="101", name="Group 1", description="Description for Group 1"),
+	Group(group_id="102", name="Group 2", description="Description for Group 2"),
+	Group(group_id="103", name="Group 3", description="Description for Group 3"),
+	Group(group_id="104", name="Group 4", description="Description for Group 4"),
+	Group(group_id="105", name="Group 5", description="Description for Group 5"),
 ]
 
+
 comments = [
-	Comment(comment_id=1, event_id=1, text="Great event!", user_id=1),
-	Comment(comment_id=2, event_id=1, text="Really enjoyed it.", user_id=2),
-	Comment(comment_id=3, event_id=2, text="Looking forward to the next one.", user_id=3),
-	Comment(comment_id=4, event_id=2, text="Had a great time.", user_id=4),
-	Comment(comment_id=5, event_id=3, text="Wonderful experience.", user_id=5),
-	# Add more comments as needed
+	Comment(comment_id="1", event_id="1", text="Great event!", user_id="1"),
+	Comment(comment_id="2", event_id="1", text="Really enjoyed it.", user_id="2"),
+	Comment(comment_id="3", event_id="2", text="Looking forward to the next one.", user_id="3"),
+	Comment(comment_id="4", event_id="2", text="Had a great time.", user_id="4"),
+	Comment(comment_id="5", event_id="3", text="Wonderful experience.", user_id="5"),
+    # Add more comments as needed
 ]
+
+event_member_relations = [
+	EventMemberRelation(event_id="901-79-1061", user_id="1"),
+	EventMemberRelation(event_id="901-79-1061", user_id="2"),
+	EventMemberRelation(event_id="707-77-4445", user_id="3"),
+	EventMemberRelation(event_id="612-50-9898", user_id="3"),
+	EventMemberRelation(event_id="306-46-9949", user_id="4"),
+	# ... More relations as needed
+]
+
 
 def scan_all_events():
 	table = dynamodb.Table('Event')
@@ -132,6 +142,7 @@ def scan_all_events():
 if __name__ == "__main__":
 	# load_data_to_dynamodb('Event', events)
 	load_event_to_dynamodb("./mock_data.csv")
+	load_data_to_dynamodb('EventMemberRelation', event_member_relations)
 	load_data_to_dynamodb('Group', groups)
 	load_data_to_dynamodb('Member', members)
 	load_data_to_dynamodb('Comment', comments)
