@@ -1,6 +1,6 @@
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from .models import Event, Group, Member, Comment
+from .models import Event, Group, Member, Comment, EventMemberRelation
 
 # Initialize a DynamoDB resource
 dynamodb = boto3.resource('dynamodb', region_name="us-east-2")
@@ -13,10 +13,11 @@ def load_data_to_dynamodb(table_name, data):
 
 
 # Replace with your table names
-events_table = dynamodb.Table('EventsTable')
-groups_table = dynamodb.Table('GroupsTable')
-members_table = dynamodb.Table('MembersTable')
-comments_table = dynamodb.Table('CommentsTable')
+events_table = dynamodb.Table('Events')
+groups_table = dynamodb.Table('Groups')
+members_table = dynamodb.Table('Members')
+comments_table = dynamodb.Table('Comments')
+relations_table = dynamodb.Table('EventMemberRelation')
 
 # CRUD operations for events
 def add_event(event_data: Event) -> dict:

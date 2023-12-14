@@ -1,6 +1,6 @@
-# Import necessary libraries and models
 import boto3
-from .models import Event, Group, Member, Comment  # Replace with the actual path to your models
+from .models import Event, Group, Member, Comment, EventMemberRelation 
+import pandas as pd
 
 # Initialize DynamoDB Client
 dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
@@ -11,13 +11,26 @@ def load_data_to_dynamodb(table_name, data):
     for item in data:
         table.put_item(Item=item.dict())
         
-events = [
-    Event(event_id=1, group_id=101, attended_person=[1, 2], not_attended_person=[3], no_response_person=[4, 5]),
-    Event(event_id=2, group_id=102, attended_person=[6, 7], not_attended_person=[8], no_response_person=[9, 10]),
-    Event(event_id=3, group_id=103, attended_person=[11, 12], not_attended_person=[13], no_response_person=[14, 15]),
-    # Add more events as needed
-]
+def load_event_to_dynamodb(csv_file):
+    table = dynamodb.Table("Event")
+    event_data = pd.read_csv(csv_file)
+    for _, row in event_data.iterrows():
+        event = Event(
+            event_id=row['event_id'],
+            status=row['status'],
+            capacity=row['capacity'],
+            event_name=row['event_name'],
+            description=row['description'],
+            location=row['location'],
+            time=row['time'],
+            group_id=row.get('group_id', ''),
+            organizer_id=row.get('organizer_id', ''),
+            tag_1=row['tag_1'],
+            tag_2=row.get('tag_2', '')
+        )
+        table.put_item(Item=event.model_dump())
 
+        
 groups = [
     Group(group_id=101, name="Group 1", description="Description for Group 1"),
     Group(group_id=102, name="Group 2", description="Description for Group 2"),
@@ -43,9 +56,12 @@ comments = [
     # Add more comments as needed
 ]
 
-# Load Data into DynamoDB
+relations = [EventMemberRelation(event_id="", user_ids="1")]
+
 if __name__ == "__main__":
-    load_data_to_dynamodb('EventsTable', events)
-    load_data_to_dynamodb('GroupsTable', groups)
-    load_data_to_dynamodb('MembersTable', members)
-    load_data_to_dynamodb('CommentsTable', comments)
+    load_event_to_dynamodb("./mock_data.csv")
+    # load_data_to_dynamodb('Events', events)
+    load_data_to_dynamodb('Groups', groups)
+    load_data_to_dynamodb('Members', members)
+    load_data_to_dynamodb('Comments', comments)
+    load_data_to_dynamodb('EventMemberRelation', relations)
