@@ -63,7 +63,7 @@ create_table(
 
 # EventMemberRelation Table 
 create_table(
-	name="EventMemberRelation"
+	name="EventMemberRelation",
 	key_schema=[{'AttributeName': 'event_id', 'KeyType': 'HASH'}, {'AttributeName': 'user_id', 'KeyType': 'RANGE'}],  # Partition key
 	attribute_definitions=[{'AttributeName': 'user_id', 'AttributeType': 'N'},  {'AttributeName': 'event_id', 'AttributeType': 'N'}]
 )
