@@ -32,10 +32,10 @@ class Group(BaseModel):
     name: str
     description: Optional[str] = None
 
-class Member(BaseModel):
-    user_id: str
-    username: str
-    event_id: int  # a member is associated with an event
+# class Member(BaseModel):
+#     user_id: str
+#     username: str
+#     event_id: int  
 
 class Comment(BaseModel):
     comment_id: str
