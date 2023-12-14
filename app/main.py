@@ -96,3 +96,7 @@ def read_event_comments(event_id: str):
 @app.post("/api/events/{event_id}/comments")
 def add_event_comment(event_id: str, user_id: str, comment: str):
     return add_comment(event_id, user_id, comment)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8011)

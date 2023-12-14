@@ -80,6 +80,7 @@ def load_data_to_dynamodb(table_name, data):
 def load_event_to_dynamodb(csv_file):
     table = dynamodb.Table("Event")
     event_data = pd.read_csv(csv_file)
+    event_data = event_data.fillna('')
     for _, row in event_data.iterrows():
         event = Event(
             event_id=row['event_id'],
@@ -89,7 +90,8 @@ def load_event_to_dynamodb(csv_file):
             description=row['description'],
             location=row['location'],
             time=row['time'],
-            group_id=row.get('group_id', ''),
+            # group_id=row.get('group_id', ''),
+            group_id='101',
             organizer_id=row.get('organizer_id', ''),
             tag_1=row['tag_1'],
             tag_2=row.get('tag_2', '')
@@ -140,7 +142,7 @@ def scan_all_events():
 # Load Data into DynamoDB
 if __name__ == "__main__":
 	# load_data_to_dynamodb('Event', events)
-	load_event_to_dynamodb("./mock_data.csv")
+	load_event_to_dynamodb("./src/mock_data.csv")
 	load_data_to_dynamodb('EventMemberRelation', event_member_relations)
 	load_data_to_dynamodb('Group', groups)
 	load_data_to_dynamodb('Comment', comments)
