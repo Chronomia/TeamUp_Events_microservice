@@ -3,7 +3,7 @@ from typing import List, Optional
 
 class EventMemberRelation(BaseModel):
     event_id: str 
-    user_ids: str
+    user_id: str
 
 
 class Event(BaseModel):
