@@ -21,6 +21,11 @@ def list_events(group_id: str):
 def create_event(user_id: str, group_id: str, event: Event):
     return add_event(user_id, group_id, event)
 
+# list some events
+@app.get("/api/events")
+def read_events(limit: int = 10, skip: int = 0):
+	return get_events(limit, skip)
+
 # get an event info
 @app.get("/api/events/{event_id}")
 def read_event(event_id: str):
@@ -29,29 +34,44 @@ def read_event(event_id: str):
         return event
     raise HTTPException(status_code=404, detail="Event not found")
 
+# update event name, duration
+
+@app.put("/api/events/{event_id}/update_name")
+def event_name_update(event_id: str, event_name: str):	
+	return update_event_name(event_id, event_name)
+
+@app.put("/api/events/{event_id}/update_duration")
+def event_duration_update(event_id: str, duration: int):
+	return update_event_duration(event_id, duration)
+
 # update event location, time, capacity, description
 @app.put("/api/events/{event_id}/update_location")
-def update_event_location(event_id: str, location: str):
+def event_location_update(event_id: str, location: str):
 	return update_event_location(event_id, location)
 
 @app.put("/api/events/{event_id}/update_time")
-def update_event_time(event_id: str, time: str):
+def event_time_update(event_id: str, time: str):
 	return update_event_time(event_id, time)
 
 @app.put("/api/events/{event_id}/update_capacity")
-def update_event_capacity(event_id: str, capacity: int):
+def event_capacity_update(event_id: str, capacity: int):
 	return update_event_capacity(event_id, capacity)
 
+
+@app.put("/api/events/{event_id}/update_status")
+def event_status_update(event_id: str, status: str):
+	return update_event_status(event_id, status)
+
 @app.put("/api/events/{event_id}/update_description")
-def update_event_description(event_id: str, description: str):
+def event_description_update(event_id: str, description: str):
 	return update_event_description(event_id, description)
 
 @app.put("/api/events/{event_id}/update_tag2")
-def update_event_tag2(event_id: str, tag_2: str):
+def event_tag2_update(event_id: str, tag_2: str):
 	return update_event_tag2(event_id, tag_2)
 
 # @app.put("/api/events/{event_id}")
-# def update_event_route(event_id: str, event: Event):
+# def event_update(event_id: str, event: Event):
 #     return update_event(event_id, event)
 
 @app.delete("/api/events/{event_id}")
@@ -84,10 +104,12 @@ def add_an_event_member(event_id: str, user_id: str):
 def delete_an_event_member(event_id: str, user_id: str):
 	return delete_event_member(event_id, user_id)
 
+# ===== For Comment =====
+
 # list all comments of an event
 @app.get("/api/events/{event_id}/comments")
 def read_event_comments(event_id: str):
-    comments = get_comments(event_id)
+    comments = list_comments_by_event_id(event_id)
     if comments:
         return comments
     raise HTTPException(status_code=404, detail="Comments not found")
@@ -96,6 +118,16 @@ def read_event_comments(event_id: str):
 @app.post("/api/events/{event_id}/comments")
 def add_event_comment(event_id: str, user_id: str, comment: str):
     return add_comment(event_id, user_id, comment)
+
+# update a comment to an event 
+@app.put("/api/events/{event_id}/comments")
+def update_event_comment(comment_id: str, comment: str):
+	return update_comment(comment_id, comment)
+
+# delete a comment to an event
+@app.delete("/api/events/{event_id}/comments")
+def delete_event_comment(comment_id: str):
+	return delete_comment(comment_id)
 
 
 if __name__ == "__main__":

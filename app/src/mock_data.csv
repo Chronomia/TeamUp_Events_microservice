@@ -1,101 +1,101 @@
-event_id,status,capacity,event_name,description,location,time,group_id,organizer_id,tag_1,tag_2
-901-79-1061,Completed,13,Sports Tournament,Thrilling adventure,123 Main Street,2023-11-10T11:36:24Z,,,entertainment,conference
-837-09-6218,Cancelled,1,Birthday Party,Memorable occasion,123 Main Street,2023-08-02T13:00:48Z,,,marketing,conference
-707-77-4445,Scheduled,72,Charity Gala,Exciting event,456 Elm Avenue,2023-08-23T17:04:32Z,,,healthcare,conference
-612-50-9898,In Progress,94,Art Exhibition,Remarkable gathering,321 Maple Court,2023-09-22T00:52:45Z,,,business,workshop
-306-46-9949,Scheduled,64,Music Festival,Unforgettable experience,321 Maple Court,2023-03-19T11:41:01Z,,,science,product launch
-677-05-0272,In Progress,10,Birthday Party,Exciting event,789 Oak Lane,2023-01-15T01:38:08Z,,,sports,workshop
-763-19-3820,Cancelled,31,Wedding,Thrilling adventure,789 Oak Lane,2023-01-02T17:41:31Z,,,marketing,exhibition
-620-44-2153,Completed,55,Fashion Show,Memorable occasion,321 Maple Court,2023-08-21T16:40:30Z,,,marketing,product launch
-950-83-9455,Scheduled,42,Sports Tournament,Remarkable gathering,123 Main Street,2023-10-27T04:29:16Z,,,education,hackathon
-445-67-9765,Completed,1,Music Festival,Remarkable gathering,456 Elm Avenue,2023-12-05T17:59:02Z,,,education,hackathon
-659-66-5211,Cancelled,5,Product Launch,Memorable occasion,789 Oak Lane,2022-12-19T03:26:54Z,,,entertainment,hackathon
-127-12-9109,Scheduled,89,Conference,Remarkable gathering,123 Main Street,2023-09-22T04:57:11Z,,,technology,meetup
-816-86-5395,In Progress,40,Art Exhibition,Memorable occasion,987 Pine Road,2023-03-22T19:16:07Z,,,healthcare,training
-250-56-0333,Completed,48,Art Exhibition,Memorable occasion,456 Elm Avenue,2023-11-06T00:43:49Z,,,marketing,product launch
-602-77-3916,Cancelled,64,Sports Tournament,Memorable occasion,789 Oak Lane,2023-10-05T16:18:26Z,,,finance,webinar
-780-12-7314,Completed,84,Birthday Party,Remarkable gathering,456 Elm Avenue,2023-09-03T10:04:39Z,,,healthcare,conference
-238-75-9870,In Progress,100,Conference,Unforgettable experience,321 Maple Court,2023-08-27T06:34:15Z,,,finance,product launch
-021-71-2506,Scheduled,94,Product Launch,Remarkable gathering,456 Elm Avenue,2023-01-24T16:43:35Z,,,entertainment,seminar
-753-24-8959,In Progress,53,Fashion Show,Memorable occasion,123 Main Street,2023-05-28T10:17:13Z,,,sports,product launch
-143-68-6576,In Progress,32,Conference,Exciting event,789 Oak Lane,2022-12-27T08:55:30Z,,,finance,product launch
-977-06-5064,Cancelled,8,Wedding,Thrilling adventure,456 Elm Avenue,2023-12-06T09:54:52Z,,,finance,product launch
-768-18-6698,Completed,62,Art Exhibition,Thrilling adventure,789 Oak Lane,2022-12-20T22:02:01Z,,,finance,training
-445-97-5149,Cancelled,31,Product Launch,Exciting event,987 Pine Road,2023-07-05T01:28:07Z,,,technology,meetup
-349-38-0392,In Progress,46,Wedding,Memorable occasion,987 Pine Road,2023-02-15T14:34:33Z,,,marketing,product launch
-438-02-9987,In Progress,86,Conference,Thrilling adventure,123 Main Street,2022-12-14T03:53:52Z,,,business,seminar
-941-39-1788,In Progress,20,Wedding,Memorable occasion,456 Elm Avenue,2023-10-30T20:40:38Z,,,education,conference
-626-48-5473,Scheduled,61,Conference,Thrilling adventure,321 Maple Court,2023-03-18T21:19:46Z,,,technology,panel discussion
-890-39-5088,Completed,49,Birthday Party,Unforgettable experience,987 Pine Road,2023-06-21T15:54:02Z,,,business,webinar
-824-18-4004,Completed,3,Wedding,Exciting event,123 Main Street,2023-08-17T09:49:43Z,,,finance,hackathon
-374-37-5521,Completed,18,Conference,Thrilling adventure,987 Pine Road,2023-10-21T00:56:20Z,,,finance,hackathon
-158-71-8713,Completed,1,Charity Gala,Memorable occasion,123 Main Street,2023-05-18T07:54:37Z,,,science,seminar
-572-47-3352,Scheduled,48,Fashion Show,Exciting event,789 Oak Lane,2023-03-14T07:22:07Z,,,sports,training
-618-71-3803,In Progress,35,Fashion Show,Exciting event,789 Oak Lane,2023-09-04T00:42:19Z,,,entertainment,product launch
-646-12-4965,In Progress,21,Music Festival,Thrilling adventure,789 Oak Lane,2023-06-12T18:40:13Z,,,healthcare,training
-179-05-9158,Cancelled,40,Fashion Show,Memorable occasion,987 Pine Road,2023-07-17T03:21:49Z,,,finance,hackathon
-889-40-3230,Scheduled,10,Fashion Show,Exciting event,123 Main Street,2023-01-06T14:24:47Z,,,science,meetup
-285-76-4782,Completed,45,Product Launch,Unforgettable experience,123 Main Street,2023-02-13T03:49:41Z,,,education,hackathon
-155-25-2301,Completed,32,Product Launch,Unforgettable experience,789 Oak Lane,2023-02-27T19:33:06Z,,,science,meetup
-817-04-7603,Cancelled,62,Movie Premiere,Memorable occasion,789 Oak Lane,2023-05-12T12:19:06Z,,,sports,product launch
-133-50-1066,Scheduled,18,Music Festival,Unforgettable experience,123 Main Street,2023-03-10T09:28:53Z,,,sports,meetup
-478-76-5952,Cancelled,76,Art Exhibition,Thrilling adventure,789 Oak Lane,2023-03-28T16:17:39Z,,,finance,seminar
-840-87-3714,Completed,13,Charity Gala,Unforgettable experience,789 Oak Lane,2023-06-20T21:00:12Z,,,education,conference
-054-79-6022,Completed,61,Fashion Show,Memorable occasion,987 Pine Road,2023-11-18T13:02:51Z,,,marketing,conference
-032-00-0552,Scheduled,89,Conference,Memorable occasion,321 Maple Court,2023-06-04T23:26:22Z,,,technology,training
-430-35-8792,Cancelled,98,Charity Gala,Remarkable gathering,321 Maple Court,2023-01-17T08:57:08Z,,,marketing,seminar
-532-06-6525,Scheduled,49,Fashion Show,Thrilling adventure,789 Oak Lane,2023-07-18T03:57:59Z,,,technology,exhibition
-623-17-9593,In Progress,14,Music Festival,Unforgettable experience,321 Maple Court,2023-06-05T08:37:16Z,,,education,workshop
-007-42-3108,Scheduled,6,Movie Premiere,Remarkable gathering,123 Main Street,2023-07-08T19:13:44Z,,,entertainment,webinar
-904-00-7664,Completed,30,Sports Tournament,Thrilling adventure,321 Maple Court,2023-11-09T15:56:18Z,,,business,meetup
-029-15-9424,Scheduled,8,Conference,Memorable occasion,123 Main Street,2022-12-29T17:57:37Z,,,sports,hackathon
-494-13-1956,Cancelled,23,Sports Tournament,Memorable occasion,321 Maple Court,2023-10-03T00:30:31Z,,,finance,hackathon
-861-35-0075,Scheduled,55,Wedding,Unforgettable experience,321 Maple Court,2022-12-21T12:06:17Z,,,sports,seminar
-321-21-9135,Cancelled,95,Charity Gala,Memorable occasion,123 Main Street,2023-05-17T07:20:48Z,,,sports,hackathon
-331-62-1719,Scheduled,96,Wedding,Unforgettable experience,987 Pine Road,2023-01-17T06:05:50Z,,,marketing,seminar
-319-15-4380,Scheduled,55,Fashion Show,Thrilling adventure,789 Oak Lane,2023-01-07T13:55:03Z,,,marketing,exhibition
-743-02-8098,Scheduled,86,Movie Premiere,Exciting event,321 Maple Court,2023-08-09T05:19:57Z,,,finance,panel discussion
-920-58-0743,Cancelled,69,Art Exhibition,Memorable occasion,456 Elm Avenue,2023-04-20T13:14:41Z,,,science,hackathon
-992-22-5141,Scheduled,46,Charity Gala,Remarkable gathering,123 Main Street,2023-09-25T15:28:04Z,,,marketing,webinar
-894-23-0815,In Progress,71,Art Exhibition,Exciting event,456 Elm Avenue,2023-01-20T20:54:58Z,,,science,exhibition
-897-20-1697,Completed,66,Music Festival,Thrilling adventure,123 Main Street,2023-12-08T18:38:02Z,,,sports,panel discussion
-025-55-9744,Cancelled,71,Sports Tournament,Unforgettable experience,987 Pine Road,2023-10-05T15:25:18Z,,,technology,training
-704-76-1785,Scheduled,58,Product Launch,Unforgettable experience,456 Elm Avenue,2023-11-02T12:43:41Z,,,technology,meetup
-890-24-2790,Completed,25,Sports Tournament,Memorable occasion,456 Elm Avenue,2023-04-02T08:02:59Z,,,education,exhibition
-065-71-6664,Completed,7,Charity Gala,Exciting event,789 Oak Lane,2023-01-26T02:23:35Z,,,healthcare,conference
-291-10-2298,In Progress,17,Music Festival,Thrilling adventure,321 Maple Court,2023-04-09T04:25:37Z,,,entertainment,training
-074-37-3316,Completed,11,Sports Tournament,Memorable occasion,789 Oak Lane,2023-08-18T19:41:58Z,,,entertainment,product launch
-175-97-3145,In Progress,27,Art Exhibition,Exciting event,321 Maple Court,2023-01-02T00:49:18Z,,,healthcare,conference
-925-34-2915,In Progress,78,Sports Tournament,Remarkable gathering,321 Maple Court,2023-04-08T18:04:02Z,,,science,product launch
-020-83-9237,Completed,70,Movie Premiere,Memorable occasion,456 Elm Avenue,2023-05-28T15:03:26Z,,,healthcare,seminar
-960-90-4694,In Progress,52,Birthday Party,Unforgettable experience,987 Pine Road,2023-09-24T13:56:06Z,,,technology,product launch
-080-33-4598,Cancelled,46,Art Exhibition,Memorable occasion,789 Oak Lane,2022-12-29T09:35:11Z,,,entertainment,product launch
-001-07-3142,In Progress,25,Conference,Memorable occasion,456 Elm Avenue,2023-05-07T01:05:04Z,,,sports,panel discussion
-905-02-8691,Cancelled,96,Conference,Thrilling adventure,123 Main Street,2023-11-28T07:21:28Z,,,marketing,product launch
-171-37-8240,Completed,58,Art Exhibition,Exciting event,789 Oak Lane,2023-02-17T11:33:37Z,,,technology,panel discussion
-767-87-2601,Cancelled,12,Fashion Show,Memorable occasion,789 Oak Lane,2023-03-28T21:10:01Z,,,technology,product launch
-320-30-8888,In Progress,42,Product Launch,Remarkable gathering,456 Elm Avenue,2023-11-06T12:56:26Z,,,finance,seminar
-700-54-3747,Cancelled,76,Conference,Memorable occasion,987 Pine Road,2023-04-23T20:51:12Z,,,sports,exhibition
-674-45-5248,Scheduled,28,Art Exhibition,Thrilling adventure,123 Main Street,2023-09-20T19:18:16Z,,,healthcare,training
-162-26-4878,In Progress,95,Sports Tournament,Memorable occasion,123 Main Street,2023-08-06T02:18:56Z,,,education,training
-577-06-5659,Cancelled,38,Birthday Party,Unforgettable experience,789 Oak Lane,2023-05-03T07:20:38Z,,,business,training
-306-38-7051,Scheduled,66,Sports Tournament,Memorable occasion,123 Main Street,2023-07-30T09:36:30Z,,,business,training
-419-52-0305,In Progress,13,Movie Premiere,Memorable occasion,321 Maple Court,2023-01-25T07:50:30Z,,,entertainment,workshop
-362-73-6420,Cancelled,56,Birthday Party,Remarkable gathering,321 Maple Court,2023-03-21T02:40:02Z,,,finance,product launch
-099-33-5100,In Progress,97,Fashion Show,Unforgettable experience,456 Elm Avenue,2023-06-15T06:20:25Z,,,education,hackathon
-927-58-5660,In Progress,31,Fashion Show,Thrilling adventure,123 Main Street,2023-10-03T02:28:38Z,,,entertainment,product launch
-357-33-0081,Scheduled,56,Sports Tournament,Exciting event,456 Elm Avenue,2023-12-03T14:57:40Z,,,business,product launch
-329-63-1296,Scheduled,1,Product Launch,Exciting event,987 Pine Road,2023-08-13T13:56:54Z,,,marketing,exhibition
-826-79-6651,In Progress,84,Music Festival,Memorable occasion,321 Maple Court,2023-04-17T21:59:12Z,,,finance,product launch
-931-59-2288,Completed,6,Charity Gala,Thrilling adventure,456 Elm Avenue,2023-02-11T04:49:09Z,,,entertainment,conference
-352-72-3685,Scheduled,18,Art Exhibition,Unforgettable experience,987 Pine Road,2023-07-24T03:44:29Z,,,sports,meetup
-334-37-6936,Completed,48,Fashion Show,Unforgettable experience,987 Pine Road,2023-10-29T00:04:00Z,,,healthcare,meetup
-129-41-4137,Completed,99,Fashion Show,Memorable occasion,987 Pine Road,2023-05-29T12:02:13Z,,,healthcare,panel discussion
-132-18-1251,Completed,87,Music Festival,Thrilling adventure,789 Oak Lane,2023-07-01T23:46:54Z,,,healthcare,panel discussion
-126-22-3795,Scheduled,96,Wedding,Exciting event,987 Pine Road,2023-08-03T15:15:38Z,,,finance,exhibition
-852-73-8081,Scheduled,49,Birthday Party,Thrilling adventure,987 Pine Road,2023-04-16T09:52:25Z,,,marketing,exhibition
-403-82-7884,Cancelled,17,Sports Tournament,Remarkable gathering,456 Elm Avenue,2023-02-27T01:29:33Z,,,education,meetup
-812-12-1636,Cancelled,11,Movie Premiere,Unforgettable experience,987 Pine Road,2023-02-11T00:51:15Z,,,art,exhibition
-694-07-7927,Cancelled,29,Product Launch,Thrilling adventure,123 Main Street,2023-10-29T12:12:53Z,,,entertainment,conference
-092-40-5514,Completed,73,Movie Premiere,Memorable occasion,456 Elm Avenue,2023-10-23T11:19:09Z,,,business,meetup
-829-45-6006,Scheduled,32,Art Exhibition,Exciting event,123 Main Street,2023-08-09T07:01:13Z,,,technology,webinar
+event_id,status,capacity,event_name,description,location,time,group_id,organizer_id,tag_1,tag_2,duration
+dfb2b990-550c-42a1-9b51-0eb74f67d9f9,Completed,13,Sports Tournament,Thrilling adventure,123 Main Street,2023-11-10T11:36:24Z,,,entertainment,conference,15
+e020c5f4-1c1c-4cd9-ba85-0b27a39ee450,Cancelled,1,Birthday Party,Memorable occasion,123 Main Street,2023-08-02T13:00:48Z,,,marketing,conference,60
+cc49b3e1-35c7-44cc-9f75-a70e4faec806,Scheduled,72,Charity Gala,Exciting event,456 Elm Avenue,2023-08-23T17:04:32Z,,,healthcare,conference,60
+a4d0882d-ae89-4ff9-ae5d-ab5fa20bce79,In Progress,94,Art Exhibition,Remarkable gathering,321 Maple Court,2023-09-22T00:52:45Z,,,business,workshop,120
+7dba10fd-f171-4b36-8ecd-bbae09af7d9e,Scheduled,64,Music Festival,Unforgettable experience,321 Maple Court,2023-03-19T11:41:01Z,,,science,product launch,105
+bb479ec7-58de-414a-9a50-bbe072ebc5b3,In Progress,10,Birthday Party,Exciting event,789 Oak Lane,2023-01-15T01:38:08Z,,,sports,workshop,90
+88cb1fd6-8b16-40aa-9bee-a6abd71fd3ac,Cancelled,31,Wedding,Thrilling adventure,789 Oak Lane,2023-01-02T17:41:31Z,,,marketing,exhibition,120
+ba9047c0-2c4b-4f4e-aea9-20e037b0dab4,Completed,55,Fashion Show,Memorable occasion,321 Maple Court,2023-08-21T16:40:30Z,,,marketing,product launch,150
+dd91564c-edbb-42cd-bb54-c84fdd6d65ad,Scheduled,42,Sports Tournament,Remarkable gathering,123 Main Street,2023-10-27T04:29:16Z,,,education,hackathon,75
+0092e070-8fa6-48a9-9aba-72c51608ea6d,Completed,1,Music Festival,Remarkable gathering,456 Elm Avenue,2023-12-05T17:59:02Z,,,education,hackathon,90
+2367ad7b-094d-4171-b634-4cee4e7ddb66,Cancelled,5,Product Launch,Memorable occasion,789 Oak Lane,2022-12-19T03:26:54Z,,,entertainment,hackathon,135
+31e5ee92-de5b-4a2c-964c-9ce5f9459a44,Scheduled,89,Conference,Remarkable gathering,123 Main Street,2023-09-22T04:57:11Z,,,technology,meetup,150
+757b595d-cdbd-4dab-9620-0eadfacd7c4e,In Progress,40,Art Exhibition,Memorable occasion,987 Pine Road,2023-03-22T19:16:07Z,,,healthcare,training,30
+4ed7f915-3c00-462b-8107-6cf3709b9aee,Completed,48,Art Exhibition,Memorable occasion,456 Elm Avenue,2023-11-06T00:43:49Z,,,marketing,product launch,15
+a57ddac1-b1ea-4d7f-8f11-70edac617ffb,Cancelled,64,Sports Tournament,Memorable occasion,789 Oak Lane,2023-10-05T16:18:26Z,,,finance,webinar,150
+0dc561cd-ec2c-4cd4-bfe7-a18113de3bbc,Completed,84,Birthday Party,Remarkable gathering,456 Elm Avenue,2023-09-03T10:04:39Z,,,healthcare,conference,30
+6ca26af9-4370-4b12-8d5a-0c897fd3a1ba,In Progress,100,Conference,Unforgettable experience,321 Maple Court,2023-08-27T06:34:15Z,,,finance,product launch,15
+45ce32d5-066e-4082-a740-73dcd996f47e,Scheduled,94,Product Launch,Remarkable gathering,456 Elm Avenue,2023-01-24T16:43:35Z,,,entertainment,seminar,120
+76b1d342-f9af-4f44-994d-b3da551bba20,In Progress,53,Fashion Show,Memorable occasion,123 Main Street,2023-05-28T10:17:13Z,,,sports,product launch,120
+acbeceea-03d5-4d35-b43d-e1555a05c536,In Progress,32,Conference,Exciting event,789 Oak Lane,2022-12-27T08:55:30Z,,,finance,product launch,45
+6abcc4ed-96e2-4aa3-9dca-92e0e0844b42,Cancelled,8,Wedding,Thrilling adventure,456 Elm Avenue,2023-12-06T09:54:52Z,,,finance,product launch,30
+ec19f37d-2bbd-4786-b7fa-0e9eda8bd97a,Completed,62,Art Exhibition,Thrilling adventure,789 Oak Lane,2022-12-20T22:02:01Z,,,finance,training,45
+09514ac4-abc0-4502-a77b-c5f200bcf3a2,Cancelled,31,Product Launch,Exciting event,987 Pine Road,2023-07-05T01:28:07Z,,,technology,meetup,60
+8f8fbd0e-1cde-4611-bfc9-1ef02fb3fbde,In Progress,46,Wedding,Memorable occasion,987 Pine Road,2023-02-15T14:34:33Z,,,marketing,product launch,135
+3bf8391e-e0d7-4c40-b2db-dbfa1aace0f5,In Progress,86,Conference,Thrilling adventure,123 Main Street,2022-12-14T03:53:52Z,,,business,seminar,105
+3f7ffdb6-964d-416c-93aa-527adb82e8e2,In Progress,20,Wedding,Memorable occasion,456 Elm Avenue,2023-10-30T20:40:38Z,,,education,conference,15
+a3e5e598-289b-4c10-960d-9debad64b9aa,Scheduled,61,Conference,Thrilling adventure,321 Maple Court,2023-03-18T21:19:46Z,,,technology,panel discussion,60
+beef6cdc-396c-45f4-b042-a1c57067e4bf,Completed,49,Birthday Party,Unforgettable experience,987 Pine Road,2023-06-21T15:54:02Z,,,business,webinar,75
+060e7fd4-c2a8-4ff8-af76-a81368e1dbf7,Completed,3,Wedding,Exciting event,123 Main Street,2023-08-17T09:49:43Z,,,finance,hackathon,15
+fcf9c1a5-f804-4bc4-841d-dc3adca5d9ff,Completed,18,Conference,Thrilling adventure,987 Pine Road,2023-10-21T00:56:20Z,,,finance,hackathon,30
+0444c578-8df8-461f-910b-d534db4afcb7,Completed,1,Charity Gala,Memorable occasion,123 Main Street,2023-05-18T07:54:37Z,,,science,seminar,30
+6e70f0d5-fd40-425f-ad6d-06e379b9bf3e,Scheduled,48,Fashion Show,Exciting event,789 Oak Lane,2023-03-14T07:22:07Z,,,sports,training,60
+4cfc4b31-283b-4f1c-a2ae-4ce3ec316555,In Progress,35,Fashion Show,Exciting event,789 Oak Lane,2023-09-04T00:42:19Z,,,entertainment,product launch,45
+52c83a1a-d90c-4f5f-954b-c0ccaa2fdebb,In Progress,21,Music Festival,Thrilling adventure,789 Oak Lane,2023-06-12T18:40:13Z,,,healthcare,training,45
+284afa67-d218-4005-a727-dd92e9ed46fe,Cancelled,40,Fashion Show,Memorable occasion,987 Pine Road,2023-07-17T03:21:49Z,,,finance,hackathon,15
+fff6c6bc-a1be-4c6b-9d6b-7be873fd056c,Scheduled,10,Fashion Show,Exciting event,123 Main Street,2023-01-06T14:24:47Z,,,science,meetup,105
+7258541b-0ee6-4d37-9fd2-e9d958d66bd6,Completed,45,Product Launch,Unforgettable experience,123 Main Street,2023-02-13T03:49:41Z,,,education,hackathon,15
+ff84fb1d-bdea-42cf-8cef-6f512b8b8789,Completed,32,Product Launch,Unforgettable experience,789 Oak Lane,2023-02-27T19:33:06Z,,,science,meetup,120
+f19a43fd-bdf4-4bb9-9e59-a97739cab254,Cancelled,62,Movie Premiere,Memorable occasion,789 Oak Lane,2023-05-12T12:19:06Z,,,sports,product launch,30
+bee59446-372c-4d87-bd7e-ef08615cedea,Scheduled,18,Music Festival,Unforgettable experience,123 Main Street,2023-03-10T09:28:53Z,,,sports,meetup,15
+6527fac9-46e9-4abd-bcc3-2bdef0e8cea4,Cancelled,76,Art Exhibition,Thrilling adventure,789 Oak Lane,2023-03-28T16:17:39Z,,,finance,seminar,60
+7bd2b88f-e6cb-4c71-991d-4cf8d2482cef,Completed,13,Charity Gala,Unforgettable experience,789 Oak Lane,2023-06-20T21:00:12Z,,,education,conference,105
+08b4e73c-89f9-48c1-9165-e6cc8d3f7d43,Completed,61,Fashion Show,Memorable occasion,987 Pine Road,2023-11-18T13:02:51Z,,,marketing,conference,90
+44cbdd5e-eafc-4a3e-b3bf-242f50e118fa,Scheduled,89,Conference,Memorable occasion,321 Maple Court,2023-06-04T23:26:22Z,,,technology,training,75
+369bda5e-a7f2-4aac-ae55-ef9b977a5c72,Cancelled,98,Charity Gala,Remarkable gathering,321 Maple Court,2023-01-17T08:57:08Z,,,marketing,seminar,60
+c9b289c3-aa1a-472d-84de-430eb5ea8d6a,Scheduled,49,Fashion Show,Thrilling adventure,789 Oak Lane,2023-07-18T03:57:59Z,,,technology,exhibition,105
+b22fbd6a-a51a-407b-8778-53afdbefd2dc,In Progress,14,Music Festival,Unforgettable experience,321 Maple Court,2023-06-05T08:37:16Z,,,education,workshop,90
+a0184a70-b8fb-4a1f-b64f-1abb08bacab1,Scheduled,6,Movie Premiere,Remarkable gathering,123 Main Street,2023-07-08T19:13:44Z,,,entertainment,webinar,75
+fed9cebe-f724-4c9e-b351-cdfa40db1e2f,Completed,30,Sports Tournament,Thrilling adventure,321 Maple Court,2023-11-09T15:56:18Z,,,business,meetup,105
+6a23e8d8-a3aa-4f09-9fa3-a63a94b7c2ce,Scheduled,8,Conference,Memorable occasion,123 Main Street,2022-12-29T17:57:37Z,,,sports,hackathon,105
+73cd3d8e-26fe-420f-843d-d9ff7d6a2b1c,Cancelled,23,Sports Tournament,Memorable occasion,321 Maple Court,2023-10-03T00:30:31Z,,,finance,hackathon,60
+1f1ccc19-b0ca-43fd-8f2c-06ed331a50d5,Scheduled,55,Wedding,Unforgettable experience,321 Maple Court,2022-12-21T12:06:17Z,,,sports,seminar,45
+9d89eba6-1556-451f-8c2c-76a1709f08e9,Cancelled,95,Charity Gala,Memorable occasion,123 Main Street,2023-05-17T07:20:48Z,,,sports,hackathon,90
+f6ffdb0d-7ebc-4bd5-a9e1-c2a9f36489a5,Scheduled,96,Wedding,Unforgettable experience,987 Pine Road,2023-01-17T06:05:50Z,,,marketing,seminar,150
+0f852b74-c4ba-4bbb-a09b-2f9dcbbf9faa,Scheduled,55,Fashion Show,Thrilling adventure,789 Oak Lane,2023-01-07T13:55:03Z,,,marketing,exhibition,30
+4089ad83-2ac3-411d-aebd-8e1cc4521d5e,Scheduled,86,Movie Premiere,Exciting event,321 Maple Court,2023-08-09T05:19:57Z,,,finance,panel discussion,30
+2acf6124-ade3-43a0-83cc-af2f150d49aa,Cancelled,69,Art Exhibition,Memorable occasion,456 Elm Avenue,2023-04-20T13:14:41Z,,,science,hackathon,150
+8a2c54c3-abf0-4ecb-996b-e6be54074d00,Scheduled,46,Charity Gala,Remarkable gathering,123 Main Street,2023-09-25T15:28:04Z,,,marketing,webinar,75
+aacace06-ea41-47af-8afc-bf5be2ce9eae,In Progress,71,Art Exhibition,Exciting event,456 Elm Avenue,2023-01-20T20:54:58Z,,,science,exhibition,150
+dd3abca4-efb8-4d8f-a6cc-dbfb1cbfdfc1,Completed,66,Music Festival,Thrilling adventure,123 Main Street,2023-12-08T18:38:02Z,,,sports,panel discussion,75
+5d97613b-fdb7-4590-98c4-cc7472ceb843,Cancelled,71,Sports Tournament,Unforgettable experience,987 Pine Road,2023-10-05T15:25:18Z,,,technology,training,135
+2a9ef3da-dabd-4be6-9a4c-64e805eefca7,Scheduled,58,Product Launch,Unforgettable experience,456 Elm Avenue,2023-11-02T12:43:41Z,,,technology,meetup,120
+fcf5e56d-ebe5-4e5d-8cfb-7c9d271bcfa3,Completed,25,Sports Tournament,Memorable occasion,456 Elm Avenue,2023-04-02T08:02:59Z,,,education,exhibition,135
+f2ada8e9-da6f-404f-aa94-7fc529a4bbbb,Completed,7,Charity Gala,Exciting event,789 Oak Lane,2023-01-26T02:23:35Z,,,healthcare,conference,60
+3169cdcb-5bfe-470a-aee0-da88b2c8f558,In Progress,17,Music Festival,Thrilling adventure,321 Maple Court,2023-04-09T04:25:37Z,,,entertainment,training,105
+8de4ff0a-e40c-44f9-ae8d-bcfd21d26fc7,Completed,11,Sports Tournament,Memorable occasion,789 Oak Lane,2023-08-18T19:41:58Z,,,entertainment,product launch,135
+f3baaba9-ddbc-45ac-9fcb-a9e5aa3d38d0,In Progress,27,Art Exhibition,Exciting event,321 Maple Court,2023-01-02T00:49:18Z,,,healthcare,conference,135
+3caa1450-5b43-4d5b-8f8f-4ebd0c7dad97,In Progress,78,Sports Tournament,Remarkable gathering,321 Maple Court,2023-04-08T18:04:02Z,,,science,product launch,120
+462aedfa-5bbb-4f1b-be6d-b308a7daf077,Completed,70,Movie Premiere,Memorable occasion,456 Elm Avenue,2023-05-28T15:03:26Z,,,healthcare,seminar,15
+c903723d-2314-4ac6-9be9-caabd7c4498d,In Progress,52,Birthday Party,Unforgettable experience,987 Pine Road,2023-09-24T13:56:06Z,,,technology,product launch,135
+2f9f0da5-d9bc-4d8e-8ed6-7f95c5f2fbba,Cancelled,46,Art Exhibition,Memorable occasion,789 Oak Lane,2022-12-29T09:35:11Z,,,entertainment,product launch,15
+abfacc10-fa49-4cf1-8dff-5d62ba55e501,In Progress,25,Conference,Memorable occasion,456 Elm Avenue,2023-05-07T01:05:04Z,,,sports,panel discussion,90
+fd4bcb5c-4cbf-4f1c-bdfc-ef2e35a37c96,Cancelled,96,Conference,Thrilling adventure,123 Main Street,2023-11-28T07:21:28Z,,,marketing,product launch,105
+ef2644d7-585d-4d7a-981e-bce3a2fbd7df,Completed,58,Art Exhibition,Exciting event,789 Oak Lane,2023-02-17T11:33:37Z,,,technology,panel discussion,90
+d1a85ed6-81ba-46fc-9d14-42efbe427acf,Cancelled,12,Fashion Show,Memorable occasion,789 Oak Lane,2023-03-28T21:10:01Z,,,technology,product launch,75
+2ab4f841-7c91-475c-af1b-fc27a2a1bbcc,In Progress,42,Product Launch,Remarkable gathering,456 Elm Avenue,2023-11-06T12:56:26Z,,,finance,seminar,105
+adfd7fa7-ccb2-498d-b3a6-f7caeeb801ec,Cancelled,76,Conference,Memorable occasion,987 Pine Road,2023-04-23T20:51:12Z,,,sports,exhibition,150
+309ea1a9-8dc5-428d-8e52-d0c038f896b7,Scheduled,28,Art Exhibition,Thrilling adventure,123 Main Street,2023-09-20T19:18:16Z,,,healthcare,training,90
+783ccead-4031-4e4e-aa84-ee1caba7d3b6,In Progress,95,Sports Tournament,Memorable occasion,123 Main Street,2023-08-06T02:18:56Z,,,education,training,105
+5ce97da6-ae9d-4b9e-9fbb-6750d845adae,Cancelled,38,Birthday Party,Unforgettable experience,789 Oak Lane,2023-05-03T07:20:38Z,,,business,training,120
+adea451e-8abe-4fc7-8780-b751ad21b4e7,Scheduled,66,Sports Tournament,Memorable occasion,123 Main Street,2023-07-30T09:36:30Z,,,business,training,120
+2aaf2c49-d904-4a29-8ab6-46bbbd66f28c,In Progress,13,Movie Premiere,Memorable occasion,321 Maple Court,2023-01-25T07:50:30Z,,,entertainment,workshop,135
+f0a51cdd-fc97-4187-bfc4-b5bae4e8c416,Cancelled,56,Birthday Party,Remarkable gathering,321 Maple Court,2023-03-21T02:40:02Z,,,finance,product launch,45
+a5dcb0e2-fb3e-48fd-ad72-4eae7f4a9d4f,In Progress,97,Fashion Show,Unforgettable experience,456 Elm Avenue,2023-06-15T06:20:25Z,,,education,hackathon,60
+cbce5d46-0b6e-4ebb-a514-aa47293df0cf,In Progress,31,Fashion Show,Thrilling adventure,123 Main Street,2023-10-03T02:28:38Z,,,entertainment,product launch,90
+c9dab4dc-f60b-41bb-91cc-f8dc6dc2bc0d,Scheduled,56,Sports Tournament,Exciting event,456 Elm Avenue,2023-12-03T14:57:40Z,,,business,product launch,105
+0145ee59-d628-4e18-84bf-656df2160448,Scheduled,1,Product Launch,Exciting event,987 Pine Road,2023-08-13T13:56:54Z,,,marketing,exhibition,135
+bb9bb4db-eea6-40f2-b5ca-ed8acfb2dc86,In Progress,84,Music Festival,Memorable occasion,321 Maple Court,2023-04-17T21:59:12Z,,,finance,product launch,60
+d20d9d27-c948-48cf-9cab-8aeade6e5ddd,Completed,6,Charity Gala,Thrilling adventure,456 Elm Avenue,2023-02-11T04:49:09Z,,,entertainment,conference,75
+b3feaac2-ca2d-4d3b-9f0e-a19cd0f97dee,Scheduled,18,Art Exhibition,Unforgettable experience,987 Pine Road,2023-07-24T03:44:29Z,,,sports,meetup,90
+182d794d-a416-4240-a2e0-ca5561e4be41,Completed,48,Fashion Show,Unforgettable experience,987 Pine Road,2023-10-29T00:04:00Z,,,healthcare,meetup,105
+513d631c-de4d-43f6-8bf0-ae26c5cdcdfc,Completed,99,Fashion Show,Memorable occasion,987 Pine Road,2023-05-29T12:02:13Z,,,healthcare,panel discussion,15
+1889f98d-3d7f-4d4b-960d-20156f531ecc,Completed,87,Music Festival,Thrilling adventure,789 Oak Lane,2023-07-01T23:46:54Z,,,healthcare,panel discussion,150
+ed59acbf-f846-4ef5-b711-075f1b57ae95,Scheduled,96,Wedding,Exciting event,987 Pine Road,2023-08-03T15:15:38Z,,,finance,exhibition,60
+ea1ff68c-4d4d-4ad7-91c7-fd197ef75c93,Scheduled,49,Birthday Party,Thrilling adventure,987 Pine Road,2023-04-16T09:52:25Z,,,marketing,exhibition,120
+5dbd32f7-3a8a-4f4e-b2ba-0efb1affa001,Cancelled,17,Sports Tournament,Remarkable gathering,456 Elm Avenue,2023-02-27T01:29:33Z,,,education,meetup,120
+a799e8c5-1ad9-4653-bf9f-e501c8cae61f,Cancelled,11,Movie Premiere,Unforgettable experience,987 Pine Road,2023-02-11T00:51:15Z,,,art,exhibition,90
+e3ea4876-ec8b-4b3b-bb79-0639b3265e43,Cancelled,29,Product Launch,Thrilling adventure,123 Main Street,2023-10-29T12:12:53Z,,,entertainment,conference,60
+75fef319-e6ff-4f7e-b0cc-c341e514ab6e,Completed,73,Movie Premiere,Memorable occasion,456 Elm Avenue,2023-10-23T11:19:09Z,,,business,meetup,30
+ee7e6e7f-e82c-4baa-8f77-0f85eba2f2e2,Scheduled,32,Art Exhibition,Exciting event,123 Main Street,2023-08-09T07:01:13Z,,,technology,webinar,15

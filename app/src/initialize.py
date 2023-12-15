@@ -44,9 +44,8 @@ def create_table(name, key_schema, attribute_definitions, read_capacity_units=1,
 # Event Table
 create_table(
 	name="Event",
-	key_schema=[{'AttributeName': 'event_id', 'KeyType': 'HASH'}, {'AttributeName': 'group_id', 'KeyType': 'RANGE'}],  
-	attribute_definitions=[{'AttributeName': 'event_id', 'AttributeType': 'S'}, 
-							{'AttributeName': 'group_id', 'AttributeType': 'S'}]
+	key_schema=[{'AttributeName': 'event_id', 'KeyType': 'HASH'}],  
+	attribute_definitions=[{'AttributeName': 'event_id', 'AttributeType': 'S'}]
 )
 
 # Group Table
@@ -59,8 +58,8 @@ create_table(
 # Comment Table
 create_table(
 	name="Comment",
-	key_schema=[{'AttributeName': 'comment_id', 'KeyType': 'HASH'}, {'AttributeName': 'event_id', 'KeyType': 'RANGE'}],  
-	attribute_definitions=[{'AttributeName': 'comment_id', 'AttributeType': 'S'},  {'AttributeName': 'event_id', 'AttributeType': 'S'}]
+	key_schema=[{'AttributeName': 'comment_id', 'KeyType': 'HASH'}],  
+	attribute_definitions=[{'AttributeName': 'comment_id', 'AttributeType': 'S'}]
 )
 
 # EventMemberRelation Table 
@@ -94,7 +93,8 @@ def load_event_to_dynamodb(csv_file):
             group_id='101',
             organizer_id=row.get('organizer_id', ''),
             tag_1=row['tag_1'],
-            tag_2=row.get('tag_2', '')
+            tag_2=row.get('tag_2', ''),
+            duration=row['duration']
         )
         table.put_item(Item=event.model_dump())
 		
@@ -147,6 +147,7 @@ if __name__ == "__main__":
 	load_data_to_dynamodb('Group', groups)
 	load_data_to_dynamodb('Comment', comments)
 	all_events = scan_all_events()
+	print(len(all_events))
 	if len(all_events) > 0:
 		print("Initialization loaded successfully.")
 	else:

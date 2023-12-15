@@ -18,7 +18,7 @@ class Event(BaseModel):
     organizer_id: str
     tag_1: str
     tag_2: Optional[str]
-
+    duration: int
 
 # class Event(BaseModel):
 #     event_id: int

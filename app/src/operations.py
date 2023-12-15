@@ -17,10 +17,9 @@ def load_data_to_dynamodb(table_name, data):
 
 
 # Replace with your table names
-events_table = dynamodb.Table('Events')
-groups_table = dynamodb.Table('Groups')
-# members_table = dynamodb.Table('Members')
-comments_table = dynamodb.Table('Comments')
+events_table = dynamodb.Table('Event')
+groups_table = dynamodb.Table('Group')
+comments_table = dynamodb.Table('Comment')
 relations_table = dynamodb.Table('EventMemberRelation')
 
 def add_event(user_id : str, group_id : str, event_data: Event) -> dict:
@@ -37,72 +36,142 @@ def get_event(event_id: str) -> dict:
 	response = events_table.get_item(Key={'event_id': event_id})
 	return response.get('Item')
 
+
 def list_attendees(event_id: str) -> list:
-	response = relations_table.query(
-		KeyConditionExpression=Key('event_id').eq(event_id)
-	)
-	return response.get('Items', [])
+    response = relations_table.query(
+        KeyConditionExpression=Key('event_id').eq(event_id)
+    )
+    items = response.get('Items', [])
+    user_ids = [item['user_id'] for item in items]
+    return user_ids
+
+def event_exists(event_id: str) -> bool:
+    try:
+        response = events_table.get_item(
+            Key={'event_id': event_id}
+        )
+        return 'Item' in response
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False
+
+
+def update_event_name(event_id: str, event_name: str) -> dict:
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #en = :en",
+        ExpressionAttributeNames={'#en': 'event_name'},
+        ExpressionAttributeValues={':en': event_name},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
+
 
 def update_event_location(event_id: str, location: str) -> dict:
-	response = events_table.update_item(
-		Key={'event_id': event_id},
-		UpdateExpression="set location=:l",
-		ExpressionAttributeValues={
-			':l': location
-		},
-		ReturnValues="UPDATED_NEW"
-	)
-	
-	return response.get('Attributes', {})
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #loc = :l",
+        ExpressionAttributeNames={'#loc': 'location'},
+        ExpressionAttributeValues={':l': location},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
+
 
 def update_event_time(event_id: str, time: str) -> dict:
-	try:
-		datetime.fromisoformat(time)
-	except ValueError:
-		return {'error': 'Invalid time format'}
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
 
-	# Update the event time
-	response = events_table.update_item(
-		Key={'event_id': event_id},
-		UpdateExpression="set time=:t",
-		ExpressionAttributeValues={
-			':t': time
-		},
-		ReturnValues="UPDATED_NEW"
-	)
+    try:
+        datetime.fromisoformat(time)
+    except ValueError:
+        return {'error': 'Invalid time format'}
 
-	return response.get('Attributes', {})
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #t = :t",
+        ExpressionAttributeNames={'#t': 'time'},
+        ExpressionAttributeValues={':t': time},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
 
 
 def update_event_capacity(event_id: str, capacity: int) -> dict:
-	response = events_table.update_item(
-		Key={'event_id': event_id},
-		UpdateExpression="set capacity=:c",
-		ExpressionAttributeValues={
-			':c': capacity
-		},
-		ReturnValues="UPDATED_NEW"
-	)
- 
-	return response.get('Attributes', {})
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
 
-def update_event_status():
-	pass
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #c = :c",
+        ExpressionAttributeNames={'#c': 'capacity'},
+        ExpressionAttributeValues={':c': capacity},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
 
-def update_event_description(event_id: str, description: str) -> dict:
-	response = events_table.update_item(
-		Key={'event_id': event_id},	
-		UpdateExpression="set description=:d",
-		ExpressionAttributeValues={
-			':d': description
-		},
-		ReturnValues="UPDATED_NEW"
-	)
+
+def update_event_duration(event_id: str, duration: int) -> dict:
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #d = :d",
+        ExpressionAttributeNames={'#d': 'duration'},
+        ExpressionAttributeValues={':d': duration},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
+
+
+def update_event_status(event_id: str, status: str) -> dict:
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #s = :s",
+        ExpressionAttributeNames={'#s': 'status'},
+        ExpressionAttributeValues={':s': status},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
+
 	
-	return response.get('Attributes', {})
+def update_event_description(event_id: str, description: str) -> dict:
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+
+    response = events_table.update_item(
+        Key={'event_id': event_id},
+        UpdateExpression="set #desc = :d",
+        ExpressionAttributeNames={'#desc': 'description'},
+        ExpressionAttributeValues={':d': description},
+        ReturnValues="UPDATED_NEW"
+    )
+    return response.get('Attributes', {})
+
 
 def update_event_tag2(event_id: str, tag2: str) -> dict:
-	response = events_table.update_item(
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+    
+    response = events_table.update_item(
 		Key={'event_id': event_id},	
 		UpdateExpression="set tag_2=:t2",
 		ExpressionAttributeValues={
@@ -110,8 +179,8 @@ def update_event_tag2(event_id: str, tag2: str) -> dict:
 		},
 		ReturnValues="UPDATED_NEW"
 	)
-	
-	return response.get('Attributes', {})
+    
+    return response.get('Attributes', {})
 
 
 
@@ -138,8 +207,16 @@ def update_event(event_id: str, event_data: Event) -> dict:
 	return response.get('Attributes', {})
 
 def delete_event(event_id: str) -> dict:
-	events_table.delete_item(Key={'event_id': event_id})
-	return {"message": "Event deleted"}
+    # Check if the event exists
+    if not event_exists(event_id):
+        return {'message': 'Event not found'}
+
+    try:
+        events_table.delete_item(Key={'event_id': event_id})
+        return {"message": "Event deleted"}
+    except Exception as e:
+        return {'error': str(e)}
+
 
 def list_events_by_group_id(group_id: str) -> list:
 	# Query the events table for items with the specified group_id
@@ -153,34 +230,46 @@ def list_events_by_group_id(group_id: str) -> list:
 		return []
 
 
-# def get_events(limit: int = 10, skip: int = 0) -> list:
-# 	response = events_table.scan()
-# 	items = response.get('Items', [])
-# 	return items[skip: skip + limit]
+def get_events(limit: int = 10, skip: int = 0) -> list:
+	response = events_table.scan()
+	items = response.get('Items', [])
+	return items[skip: skip + limit]
+
 
 def add_event_member(event_id: str, user_id: str) -> dict:
-	try:
-		response = relations_table.put_item(
-			Item={
-				'event_id': event_id,
-				'user_id': user_id
-			}
-		)
-		return {'message': 'Member added to event successfully', 'response': response}
-	except Exception as e:
-		return {'error': str(e)}
+    # Check if the member already exists
+    existing_member = relations_table.get_item(
+        Key={'event_id': event_id, 'user_id': user_id}
+    ).get('Item')
+
+    if existing_member:
+        return {'message': 'Member already exists in the event'}
+
+    try:
+        response = relations_table.put_item(
+            Item={'event_id': event_id, 'user_id': user_id}
+        )
+        return {'message': 'Member added to event successfully', 'response': response}
+    except Exception as e:
+        return {'error': str(e)}
+
 	
 def delete_event_member(event_id: str, user_id: str) -> dict:
-	try:
-		response = relations_table.delete_item(
-			Key={
-				'event_id': event_id,
-				'user_id': user_id
-			}
-		)
-		return {'message': 'Member removed from event successfully', 'response': response}
-	except Exception as e:
-		return {'error': str(e)}
+    # Check if the member exists
+    existing_member = relations_table.get_item(
+        Key={'event_id': event_id, 'user_id': user_id}
+    ).get('Item')
+
+    if not existing_member:
+        return {'message': 'No such member exists in the event'}
+
+    try:
+        response = relations_table.delete_item(
+            Key={'event_id': event_id, 'user_id': user_id}
+        )
+        return {'message': 'Member removed from event successfully', 'response': response}
+    except Exception as e:
+        return {'error': str(e)}
 
 
 # def get_group(event_id: int) -> dict:
@@ -204,19 +293,122 @@ def delete_event_member(event_id: str, user_id: str) -> dict:
 #     else:
 #         return []
 
-def get_comments(event_id: str) -> list:
-	response = comments_table.query(
-		KeyConditionExpression=Key('event_id').eq(event_id)
-	)
-	return response.get('Items', [])
 
-def add_comment(event_id: str, user_id: str, comment: str) -> dict:
-	comment_dict = {
-		'comment_id': str(uuid.uuid4()),
-		'event_id': event_id,
-		'user_id': user_id,
-		'text': comment
-	}
-	comments_table.put_item(Item=comment_dict)
-	comments_table.put_item(Item=comment_dict)
-	return comment_dict
+def list_comments_by_event_id(event_id: str) -> list:
+	try:
+		response = comments_table.scan(
+			FilterExpression=boto3.dynamodb.conditions.Attr('event_id').eq(event_id)
+		)
+		return response.get('Items', [])
+	except Exception as e:
+		print(f"Error querying table: {str(e)}")
+		return []
+
+
+def add_comment(event_id: str, user_id: str, comment_text: str) -> dict:
+    # Check if the user has already commented on the event
+    response = comments_table.scan(
+        FilterExpression=Attr('event_id').eq(event_id) & Attr('user_id').eq(user_id)
+    )
+
+    if response.get('Items'):
+        return {'message': 'User has already commented on this event'}
+
+    # If the user hasn't commented, add the new comment
+    try:
+        comment_id = str(uuid.uuid4())
+        comment_dict = {
+            'comment_id': comment_id,
+            'event_id': event_id,
+            'user_id': user_id,
+            'text': comment_text
+        }
+        comments_table.put_item(Item=comment_dict)
+        return {'message': 'Comment added successfully', 'comment_id': comment_id}
+    except Exception as e:
+        return {'error': str(e)}
+
+def update_comment(comment_id: str, new_comment: str) -> dict:
+    # Check if the comment exists
+    existing_comment = comments_table.get_item(
+        Key={'comment_id': comment_id}
+    ).get('Item')
+
+    if not existing_comment:
+        return {'message': 'No such comment exists'}
+
+    try:
+        response = comments_table.update_item(
+            Key={'comment_id': comment_id},
+            UpdateExpression="set #t = :t",
+            ExpressionAttributeNames={
+                '#t': 'text'  
+            },
+            ExpressionAttributeValues={
+                ':t': new_comment
+            },
+            ReturnValues="UPDATED_NEW"
+        )
+        return {'message': 'Comment updated successfully', 'response': response}
+    except Exception as e:
+        return {'error': str(e)}
+
+def delete_comment(comment_id: str) -> dict:
+    # Check if the comment exists
+    existing_comment = comments_table.get_item(
+        Key={'comment_id': comment_id}
+    ).get('Item')
+
+    if not existing_comment:
+        return {'message': 'No such comment exists'}
+
+    try:
+        response = comments_table.delete_item(
+            Key={'comment_id': comment_id}
+        )
+        return {'message': 'Comment deleted successfully', 'response': response}
+    except Exception as e:
+        return {'error': str(e)}
+
+
+# def update_comment(event_id: str, user_id: str, new_comment: str) -> dict:
+#     # Check if the comment exists
+# 	existing_comment = comments_table.get_item(
+# 		Key={'event_id': event_id, 'user_id': user_id}
+# 	).get('Item')
+
+# 	if not existing_comment:
+# 		return {'message': 'No such comment exists'}
+
+# 	try:
+# 		response = comments_table.update_item(
+# 			Key={'event_id': event_id, 'user_id': user_id},
+# 			UpdateExpression="set #t = :t",
+# 			ExpressionAttributeNames={
+# 				'#t': 'text'  
+# 			},
+# 			ExpressionAttributeValues={
+# 				':t': new_comment
+# 			},
+# 			ReturnValues="UPDATED_NEW"
+# 		)
+# 		return {'message': 'Comment updated successfully', 'response': response}
+# 	except Exception as e:
+# 		return {'error': str(e)}
+
+# def delete_comment(event_id: str, user_id: str) -> dict:
+# 	# Check if the comment exists
+# 	existing_comment = comments_table.get_item(
+# 		Key={'event_id': event_id, 'user_id': user_id}
+# 	).get('Item')
+
+# 	if not existing_comment:
+# 		return {'message': 'No such comment exists'}
+
+# 	try:
+# 		response = comments_table.delete_item(
+# 			Key={'event_id': event_id, 'user_id': user_id}
+# 		)
+# 		return {'message': 'Comment deleted successfully', 'response': response}
+# 	except Exception as e:
+# 		return {'error': str(e)}	
