@@ -235,6 +235,34 @@ def get_events(limit: int = 10, skip: int = 0) -> list:
 	items = response.get('Items', [])
 	return items[skip: skip + limit]
 
+def get_events_by_ids(event_ids: list) -> list:
+    events = []
+    try:
+        for event_id in event_ids:
+            response = events_table.get_item(
+                Key={'event_id': event_id}
+            )
+            event = response.get('Item')
+            if event:
+                events.append(event)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    return events
+
+def list_events_by_user_id(user_id: str) -> list:
+	# Query the relations table for items with the specified user_id
+	try:
+		response = relations_table.scan(
+			FilterExpression=boto3.dynamodb.conditions.Attr('user_id').eq(user_id)
+		)
+		items = response.get('Items', [])
+		event_ids = [item['event_id'] for item in items]
+
+		return get_events_by_ids(event_ids)
+	except Exception as e:
+		print(f"error: {str(e)}")
+		return []
+
 
 def add_event_member(event_id: str, user_id: str) -> dict:
     # Check if the member already exists

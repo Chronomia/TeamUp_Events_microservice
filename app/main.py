@@ -86,6 +86,14 @@ def delete_event_route(event_id: str):
 #         return group
 #     raise HTTPException(status_code=404, detail="Group not found")
 
+# ===== For Attendee =====
+
+# list events that a user is attending
+@app.get("/api/users/{user_id}/events")
+def list_events(user_id: str):
+	return list_events_by_user_id(user_id)
+
+
 # list attendees of an event
 @app.get("/api/events/{event_id}/members")
 def read_event_members(event_id: str):

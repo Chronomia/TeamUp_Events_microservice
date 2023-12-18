@@ -117,11 +117,11 @@ comments = [
 ]
 
 event_member_relations = [
-	EventMemberRelation(event_id="901-79-1061", user_id="1"),
-	EventMemberRelation(event_id="901-79-1061", user_id="2"),
-	EventMemberRelation(event_id="707-77-4445", user_id="3"),
-	EventMemberRelation(event_id="612-50-9898", user_id="3"),
-	EventMemberRelation(event_id="306-46-9949", user_id="4"),
+	EventMemberRelation(event_id="fcf5e56d-ebe5-4e5d-8cfb-7c9d271bcfa3", user_id="1"),
+	EventMemberRelation(event_id="fcf5e56d-ebe5-4e5d-8cfb-7c9d271bcfa3", user_id="2"),
+	EventMemberRelation(event_id="6abcc4ed-96e2-4aa3-9dca-92e0e0844b42", user_id="3"),
+	EventMemberRelation(event_id="6527fac9-46e9-4abd-bcc3-2bdef0e8cea4", user_id="3"),
+	EventMemberRelation(event_id="0f852b74-c4ba-4bbb-a09b-2f9dcbbf9faa", user_id="4"),
 ]
 
 

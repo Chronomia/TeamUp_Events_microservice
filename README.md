@@ -53,6 +53,9 @@ TeamUp Events Microservice is an API for managing events, attendees, and comment
 
 ### Attendees
 
+- `GET /api/users/{user_id}/events`
+  - List all events that a user attends.
+
 - `GET /api/events/{event_id}/members`
   - List all attendees of a specific event.
 
