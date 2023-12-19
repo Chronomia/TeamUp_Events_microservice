@@ -1,25 +1,42 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from typing import List
+from time import time
 from src.models import Event
+import json
 from src.operations import *
 import uvicorn
+import re
+from datetime import datetime
+from starlette.concurrency import iterate_in_threadpool
 
 app = FastAPI()
+log_table = dynamodb.Table('EventsLog')
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Event Management API!"}
+	return {"message": "Welcome to the Event Management API!"}
 
+# ===== For Logs =====
+
+# show all logs
+@app.get("/api/events/logs")
+def list_all_logs(limit: int = 10, skip: int = 0):
+	return list_logs(limit, skip)
+
+# show logs of a specific event
+@app.get("/api/events/{event_id}/logs")
+def list_event_logs(event_id: str, limit: int = 10, skip: int = 0):
+	return get_event_log_by_event_id(event_id, limit, skip)
 
 # list events under a group
 @app.get("/api/{group_id}/events")
 def list_events(group_id: str):
-    return list_events_by_group_id(group_id)
+	return list_events_by_group_id(group_id)
 
 # create an event (under a group?)
 @app.post("/api/{group_id}/events")
 def create_event(user_id: str, group_id: str, event: Event):
-    return add_event(user_id, group_id, event)
+	return add_event(user_id, group_id, event)
 
 # list some events
 @app.get("/api/events")
@@ -29,15 +46,97 @@ def read_events(limit: int = 10, skip: int = 0):
 # get an event info
 @app.get("/api/events/{event_id}")
 def read_event(event_id: str):
-    event = get_event(event_id)
-    if event:
-        return event
-    raise HTTPException(status_code=404, detail="Event not found")
+	event = get_event(event_id)
+	if event:
+		return event
+	raise HTTPException(status_code=404, detail="Event not found")
 
-# update event name, duration
 
+# middleware application
+def generate_log_details(body_data: dict):
+	details = ''
+	for key in body_data.keys():
+		if key.startswith('previous_'):
+			details += f"Event is updated from {key}: {body_data[key]}"
+
+		elif key.startswith('updated_'):
+			details += f" to {key}: {body_data[key]}."
+	return details
+
+def generate_create_log_details(body_data: dict):
+	details = 'Event created with details: '
+	for key in body_data.keys():
+		details += f"{key}: {body_data[key]}, "
+	details = details[:-2]
+	details += '.'
+	return details
+
+@app.middleware("http")
+async def log_updates_middleware(request: Request, call_next):
+	response = await call_next(request)
+ 
+	create_path_pattern = re.compile(r"^/api/\w+/events$")
+	update_operations_paths = [
+		"/update_name",
+		"/update_duration",
+		"/update_location",
+		"/update_time",
+		"/update_capacity",
+		"/update_status",
+		"/update_description",
+		"/update_tag2"
+	]
+ 
+	if request.method == "POST" and create_path_pattern.match(request.url.path):
+		response_body = [chunk async for chunk in response.body_iterator]
+		response.body_iterator = iterate_in_threadpool(iter(response_body))
+		body_data = json.loads(response_body[0].decode())
+
+		try:
+			event_id = body_data.get('event_id')
+			details = generate_create_log_details(body_data)
+		except json.JSONDecodeError:
+			event_id = 'Unknown'
+
+		# Log data to DynamoDB
+		log_item = {
+			'log_id': str(uuid.uuid4()),
+			'timestamp': datetime.now().isoformat(),
+			'event_id': event_id,
+			'action': f"{request.method} {request.url}",
+			'details': details,
+			'user_id': 'test_user_id'
+		}
+		log_table.put_item(Item=log_item)
+  
+	elif request.method in ["PUT", "POST"] and any(path in request.url.path for path in update_operations_paths):
+		response_body = [chunk async for chunk in response.body_iterator]
+		response.body_iterator = iterate_in_threadpool(iter(response_body))
+		body_data = json.loads(response_body[0].decode())
+
+		try:
+			event_id = body_data.get('event_id')
+			details = generate_log_details(body_data)
+		except json.JSONDecodeError:
+			event_id = 'Unknown'
+
+		# Log data to DynamoDB
+		log_item = {
+			'log_id': str(uuid.uuid4()),
+			'timestamp': datetime.now().isoformat(),
+			'event_id': event_id,
+			'action': f"{request.method} {request.url}",
+			'details': details,
+			'user_id': 'test_user_id'
+		}
+		log_table.put_item(Item=log_item)
+  	
+	return response
+
+
+# update event attributes
 @app.put("/api/events/{event_id}/update_name")
-def event_name_update(event_id: str, event_name: str):	
+def event_name_update(event_id: str, event_name: str):
 	return update_event_name(event_id, event_name)
 
 @app.put("/api/events/{event_id}/update_duration")
@@ -74,9 +173,10 @@ def event_tag2_update(event_id: str, tag_2: str):
 # def event_update(event_id: str, event: Event):
 #     return update_event(event_id, event)
 
+# delete an event
 @app.delete("/api/events/{event_id}")
 def delete_event_route(event_id: str):
-    return delete_event(event_id)
+	return delete_event(event_id)
 
 # Route for getting a group associated with an event (not for eventservice)
 # @app.get("/api/events/{event_id}/group")
@@ -93,14 +193,13 @@ def delete_event_route(event_id: str):
 def list_events(user_id: str):
 	return list_events_by_user_id(user_id)
 
-
 # list attendees of an event
 @app.get("/api/events/{event_id}/members")
 def read_event_members(event_id: str):
-    members = list_attendees(event_id)
-    if members:
-        return members
-    raise HTTPException(status_code=404, detail="Members not found")
+	members = list_attendees(event_id)
+	if members:
+		return members
+	raise HTTPException(status_code=404, detail="Members not found")
 
 # add an attendee to an event
 @app.post("/api/events/{event_id}/members")
@@ -117,17 +216,17 @@ def delete_an_event_member(event_id: str, user_id: str):
 # list all comments of an event
 @app.get("/api/events/{event_id}/comments")
 def read_event_comments(event_id: str):
-    comments = list_comments_by_event_id(event_id)
-    if comments:
-        return comments
-    raise HTTPException(status_code=404, detail="Comments not found")
+	comments = list_comments_by_event_id(event_id)
+	if comments:
+		return comments
+	raise HTTPException(status_code=404, detail="Comments not found")
 
 # add a comment to an event
 @app.post("/api/events/{event_id}/comments")
 def add_event_comment(event_id: str, user_id: str, comment: str):
-    return add_comment(event_id, user_id, comment)
+	return add_comment(event_id, user_id, comment)
 
-# update a comment to an event 
+# update a comment to an event
 @app.put("/api/events/{event_id}/comments")
 def update_event_comment(comment_id: str, comment: str):
 	return update_comment(comment_id, comment)
@@ -139,4 +238,4 @@ def delete_event_comment(comment_id: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8011)
+	uvicorn.run(app, host="0.0.0.0", port=8011)

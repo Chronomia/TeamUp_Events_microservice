@@ -1,87 +1,58 @@
 # TeamUp Events Microservice
 
-## Overview
-TeamUp Events Microservice is an API for managing events, attendees, and comments. This service allows users to create, update, list, and delete events, as well as manage event attendees and comments.
+Welcome to the TeamUp Events Microservice! This FastAPI application is designed to manage events, including creating, updating, and logging event details.
 
-## API Endpoints
+## Features
 
-### General
+- List events under a specific group
+- Create new events
+- Read event details
+- Update event attributes (name, duration, location, time, capacity, status, description, tags)
+- Delete events
+- Attendee management (list, add, delete attendees for an event)
+- Comment management (list, add, update, delete comments for an event)
+- Event logs (list all logs, list logs for a specific event)
 
-- `GET /`
-  - Welcome message for the API.
+## Endpoints
 
-### Events
+### Root Endpoint
+- `GET /`: Welcome message
 
-- `GET /api/{group_id}/events`
-  - List all events under a specified group.
+### Event Management
+- `GET /api/{group_id}/events`: List events under a specific group
+- `POST /api/{group_id}/events`: Create a new event
+- `GET /api/events`: List a number of events
+- `GET /api/events/{event_id}`: Get details of a specific event
+- `PUT /api/events/{event_id}/update_name`: Update the name of an event
+- `PUT /api/events/{event_id}/update_duration`: Update the duration of an event
+- `PUT /api/events/{event_id}/update_location`: Update the location of an event
+- `PUT /api/events/{event_id}/update_time`: Update the time of an event
+- `PUT /api/events/{event_id}/update_capacity`: Update the capacity of an event
+- `PUT /api/events/{event_id}/update_status`: Update the status of an event
+- `PUT /api/events/{event_id}/update_description`: Update the description of an event
+- `PUT /api/events/{event_id}/update_tag2`: Update the second tag of an event
+- `DELETE /api/events/{event_id}`: Delete an event
 
-- `POST /api/{group_id}/events`
-  - Create a new event under a specified group.
+### Attendee Management
+- `GET /api/users/{user_id}/events`: List events that a user is attending
+- `GET /api/events/{event_id}/members`: List attendees of an event
+- `POST /api/events/{event_id}/members`: Add an attendee to an event
+- `DELETE /api/events/{event_id}/members`: Delete an attendee from an event
 
-- `GET /api/events`
-  - List some events with pagination.
+### Comment Management
+- `GET /api/events/{event_id}/comments`: List all comments of an event
+- `POST /api/events/{event_id}/comments`: Add a comment to an event
+- `PUT /api/events/{event_id}/comments`: Update a comment on an event
+- `DELETE /api/events/{event_id}/comments`: Delete a comment from an event
 
-- `GET /api/events/{event_id}`
-  - Get detailed information about a specific event.
+### Logs
+- `GET /api/events/logs`: Show all logs
+- `GET /api/events/{event_id}/logs`: Show logs of a specific event
 
-- `PUT /api/events/{event_id}/update_name`
-  - Update the name of a specific event.
-
-- `PUT /api/events/{event_id}/update_duration`
-  - Update the duration of a specific event.
-
-- `PUT /api/events/{event_id}/update_location`
-  - Update the location of a specific event.
-
-- `PUT /api/events/{event_id}/update_time`
-  - Update the time of a specific event.
-
-- `PUT /api/events/{event_id}/update_capacity`
-  - Update the capacity of a specific event.
-
-- `PUT /api/events/{event_id}/update_status`
-  - Update the status of a specific event.
-
-- `PUT /api/events/{event_id}/update_description`
-  - Update the description of a specific event.
-
-- `PUT /api/events/{event_id}/update_tag2`
-  - Update the secondary tag of a specific event.
-
-- `DELETE /api/events/{event_id}`
-  - Delete a specific event.
-
-### Attendees
-
-- `GET /api/users/{user_id}/events`
-  - List all events that a user attends.
-
-- `GET /api/events/{event_id}/members`
-  - List all attendees of a specific event.
-
-- `POST /api/events/{event_id}/members`
-  - Add an attendee to a specific event.
-
-- `DELETE /api/events/{event_id}/members`
-  - Remove an attendee from a specific event.
-
-### Comments
-
-- `GET /api/events/{event_id}/comments`
-  - List all comments for a specific event.
-
-- `POST /api/events/{event_id}/comments`
-  - Add a comment to a specific event.
-
-- `PUT /api/events/{event_id}/comments`
-  - Update a comment on a specific event.
-
-- `DELETE /api/events/{event_id}/comments`
-  - Delete a comment from a specific event.
+## Middleware Logging
+The service includes middleware for logging updates and event creation. Logs are stored in a DynamoDB table named `EventsLog`.
 
 ## Running the Application
+To start the server, run the following command:
 
-To run the application, use the following command:
-
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8011
+```uvicorn main:app --host 0.0.0.0 --port 8011```

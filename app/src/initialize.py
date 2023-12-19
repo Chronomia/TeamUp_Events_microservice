@@ -1,6 +1,6 @@
 # Import necessary libraries and models
 import boto3
-from models import Event, Group, Comment, EventMemberRelation
+from models import Event, Group, Comment, EventMemberRelation, EventsLog
 import pandas as pd
 
 # Initialize DynamoDB Client
@@ -67,6 +67,13 @@ create_table(
 	name="EventMemberRelation",
 	key_schema=[{'AttributeName': 'event_id', 'KeyType': 'HASH'}, {'AttributeName': 'user_id', 'KeyType': 'RANGE'}], 
 	attribute_definitions=[{'AttributeName': 'event_id', 'AttributeType': 'S'},  {'AttributeName': 'user_id', 'AttributeType': 'S'}]
+)
+
+# EventsLog Table
+create_table(
+	name="EventsLog",
+	key_schema=[{'AttributeName': 'log_id', 'KeyType': 'HASH'}],
+	attribute_definitions=[{'AttributeName': 'log_id', 'AttributeType': 'S'}]
 )
 
 
