@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Response
 from typing import List
 from time import time
 from src.models import Event
@@ -17,12 +17,77 @@ log_table = dynamodb.Table('EventsLog')
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
-    CORSMiddleware,
+	CORSMiddleware,
 	allow_origins=["*"], # Allows all origins
 	allow_credentials=True,
 	allow_methods=["*"],
 	allow_headers=["*"],
 )
+
+@app.middleware("http")
+async def log_updates_middleware(request: Request, call_next):
+	response = await call_next(request)
+ 
+	create_path_pattern = re.compile(r"^/api/\w+/events$")
+	update_operations_paths = [
+		"/update_name",
+		"/update_duration",
+		"/update_location",
+		"/update_time",
+		"/update_capacity",
+		"/update_status",
+		"/update_description",
+		"/update_tag2"
+	]
+ 
+	if request.method == "POST" and create_path_pattern.match(request.url.path):
+		response_body = [chunk async for chunk in response.body_iterator]
+		response.body_iterator = iterate_in_threadpool(iter(response_body))
+		body_data = json.loads(response_body[0].decode())
+		event_id = body_data.get('event_id')
+
+		try:
+			details = generate_create_log_details(body_data)
+		except json.JSONDecodeError:
+			details = body_data.get('message')
+
+		# Log data to DynamoDB
+		log_item = {
+			'log_id': str(uuid.uuid4()),
+			'timestamp': datetime.now().isoformat(),
+			'event_id': event_id,
+			'action': f"{request.method} {request.url}",
+			'details': details,
+			'user_id': 'test_user_id'
+		}
+		log_table.put_item(Item=log_item)
+  
+	
+	elif request.method in ["PUT", "POST"] and any(path in request.url.path for path in update_operations_paths):
+		response_body = [chunk async for chunk in response.body_iterator]
+		response.body_iterator = iterate_in_threadpool(iter(response_body))
+		body_data = json.loads(response_body[0].decode())
+		event_id = body_data.get('event_id')
+
+		try:
+			details = generate_log_details(body_data)
+		except json.JSONDecodeError:
+			details = body_data.get('message')
+
+		# Log data to DynamoDB
+		log_item = {
+			'log_id': str(uuid.uuid4()),
+			'timestamp': datetime.now().isoformat(),
+			'event_id': event_id,
+			'action': f"{request.method} {request.url}",
+			'details': details,
+			'user_id': 'test_user_id'
+		}
+		log_table.put_item(Item=log_item)
+
+	print(dict(response.headers))
+		
+	return response
 
 @app.get("/")
 def root():
@@ -82,68 +147,6 @@ def generate_create_log_details(body_data: dict):
 	details = details[:-2]
 	details += '.'
 	return details
-
-@app.middleware("http")
-async def log_updates_middleware(request: Request, call_next):
-	response = await call_next(request)
- 
-	create_path_pattern = re.compile(r"^/api/\w+/events$")
-	update_operations_paths = [
-		"/update_name",
-		"/update_duration",
-		"/update_location",
-		"/update_time",
-		"/update_capacity",
-		"/update_status",
-		"/update_description",
-		"/update_tag2"
-	]
- 
-	if request.method == "POST" and create_path_pattern.match(request.url.path):
-		response_body = [chunk async for chunk in response.body_iterator]
-		response.body_iterator = iterate_in_threadpool(iter(response_body))
-		body_data = json.loads(response_body[0].decode())
-		event_id = body_data.get('event_id')
-
-		try:
-			details = generate_create_log_details(body_data)
-		except json.JSONDecodeError:
-			details = body_data.get('message')
-
-		# Log data to DynamoDB
-		log_item = {
-			'log_id': str(uuid.uuid4()),
-			'timestamp': datetime.now().isoformat(),
-			'event_id': event_id,
-			'action': f"{request.method} {request.url}",
-			'details': details,
-			'user_id': 'test_user_id'
-		}
-		log_table.put_item(Item=log_item)
-  
-	elif request.method in ["PUT", "POST"] and any(path in request.url.path for path in update_operations_paths):
-		response_body = [chunk async for chunk in response.body_iterator]
-		response.body_iterator = iterate_in_threadpool(iter(response_body))
-		body_data = json.loads(response_body[0].decode())
-		event_id = body_data.get('event_id')
-
-		try:
-			details = generate_log_details(body_data)
-		except json.JSONDecodeError:
-			details = body_data.get('message')
-
-		# Log data to DynamoDB
-		log_item = {
-			'log_id': str(uuid.uuid4()),
-			'timestamp': datetime.now().isoformat(),
-			'event_id': event_id,
-			'action': f"{request.method} {request.url}",
-			'details': details,
-			'user_id': 'test_user_id'
-		}
-		log_table.put_item(Item=log_item)
-  	
-	return response
 
 
 # update event attributes
