@@ -6,7 +6,7 @@ import pandas as pd
 # Initialize DynamoDB Client
 dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 
-tables_to_delete = ["Event", "Group", "Comment", "EventMemberRelation"]
+tables_to_delete = ["Event", "Group", "Comment", "EventMemberRelation", "EventsLog"]
 
 # Function to delete a table
 def delete_table(table_name):
