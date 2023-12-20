@@ -85,7 +85,7 @@ async def log_updates_middleware(request: Request, call_next):
 		}
 		log_table.put_item(Item=log_item)
 
-	print(dict(response.headers))
+	# print(dict(response.headers))
 		
 	return response
 
