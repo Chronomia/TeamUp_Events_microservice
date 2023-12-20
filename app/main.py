@@ -12,6 +12,18 @@ from starlette.concurrency import iterate_in_threadpool
 app = FastAPI()
 log_table = dynamodb.Table('EventsLog')
 
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+	allow_origins=["*"], # Allows all origins
+	allow_credentials=True,
+	allow_methods=["*"],
+	allow_headers=["*"],
+)
+
 @app.get("/")
 def root():
 	return {"message": "Welcome to the Event Management API!"}

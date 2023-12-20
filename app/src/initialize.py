@@ -116,11 +116,11 @@ groups = [
 
 
 comments = [
-	Comment(comment_id="1", event_id="1", text="Great event!", user_id="1"),
-	Comment(comment_id="2", event_id="1", text="Really enjoyed it.", user_id="2"),
-	Comment(comment_id="3", event_id="2", text="Looking forward to the next one.", user_id="3"),
-	Comment(comment_id="4", event_id="2", text="Had a great time.", user_id="4"),
-	Comment(comment_id="5", event_id="3", text="Wonderful experience.", user_id="5"),
+	Comment(comment_id="1", event_id="fcf5e56d-ebe5-4e5d-8cfb-7c9d271bcfa3", text="Great event!", user_id="1"),
+	Comment(comment_id="2", event_id="fcf5e56d-ebe5-4e5d-8cfb-7c9d271bcfa3", text="Really enjoyed it.", user_id="2"),
+	Comment(comment_id="3", event_id="6abcc4ed-96e2-4aa3-9dca-92e0e0844b42", text="Looking forward to the next one.", user_id="3"),
+	Comment(comment_id="4", event_id="6abcc4ed-96e2-4aa3-9dca-92e0e0844b42", text="Had a great time.", user_id="4"),
+	Comment(comment_id="5", event_id="6527fac9-46e9-4abd-bcc3-2bdef0e8cea4", text="Wonderful experience.", user_id="5"),
 ]
 
 event_member_relations = [
