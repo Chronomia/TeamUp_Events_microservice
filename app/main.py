@@ -91,12 +91,12 @@ async def log_updates_middleware(request: Request, call_next):
 		response_body = [chunk async for chunk in response.body_iterator]
 		response.body_iterator = iterate_in_threadpool(iter(response_body))
 		body_data = json.loads(response_body[0].decode())
+		event_id = body_data.get('event_id')
 
 		try:
-			event_id = body_data.get('event_id')
 			details = generate_create_log_details(body_data)
 		except json.JSONDecodeError:
-			event_id = 'Unknown'
+			details = body_data.get('message')
 
 		# Log data to DynamoDB
 		log_item = {
@@ -113,12 +113,12 @@ async def log_updates_middleware(request: Request, call_next):
 		response_body = [chunk async for chunk in response.body_iterator]
 		response.body_iterator = iterate_in_threadpool(iter(response_body))
 		body_data = json.loads(response_body[0].decode())
+		event_id = body_data.get('event_id')
 
 		try:
-			event_id = body_data.get('event_id')
 			details = generate_log_details(body_data)
 		except json.JSONDecodeError:
-			event_id = 'Unknown'
+			details = body_data.get('message')
 
 		# Log data to DynamoDB
 		log_item = {

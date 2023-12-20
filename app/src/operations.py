@@ -71,10 +71,10 @@ def get_event_log_by_event_id(event_id: str, limit: int = 10, skip: int = 10) ->
 def update_event_name(event_id: str, event_name: str) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_name = current_event.get('event_name', 'Unknown')
 	if current_name == event_name:
-		return {'message': 'Event name is the same, no need to update'}
+		return {'message': 'Event name is the same, no need to update', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -94,10 +94,10 @@ def update_event_name(event_id: str, event_name: str) -> dict:
 def update_event_location(event_id: str, location: str) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_location = current_event.get('location', 'Unknown')
 	if current_location == location:
-		return {'message': 'Event location is the same, no need to update'}
+		return {'message': 'Event location is the same, no need to update', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -117,15 +117,15 @@ def update_event_location(event_id: str, location: str) -> dict:
 def update_event_time(event_id: str, time: str) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_time = current_event.get('time', 'Unknown')
 	if current_time == time:
-		return {'message': 'Event start time is the same, no need to update'}
+		return {'message': 'Event start time is the same, no need to update', 'event_id': event_id}
 
 	try:
 		datetime.fromisoformat(time)
 	except ValueError:
-		return {'error': 'Invalid time format'}
+		return {'message': 'Invalid time format', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -145,10 +145,10 @@ def update_event_time(event_id: str, time: str) -> dict:
 def update_event_capacity(event_id: str, capacity: int) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_capacity = current_event.get('capacity', 'Unknown')
 	if current_capacity == capacity:
-		return {'message': 'Event capacity is the same, no need to update'}
+		return {'message': 'Event capacity is the same, no need to update', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -168,10 +168,13 @@ def update_event_capacity(event_id: str, capacity: int) -> dict:
 def update_event_duration(event_id: str, duration: int) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_duration = current_event.get('duration', 'Unknown')
 	if current_duration == duration:
-		return {'message': 'Event duration is the same, no need to update'}
+		return {'message': 'Event duration is the same, no need to update', 'event_id': event_id}
+
+	if duration < 10 or duration > 300:
+		return {'message': 'Invalid duration minutes', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -191,10 +194,10 @@ def update_event_duration(event_id: str, duration: int) -> dict:
 def update_event_status(event_id: str, status: str) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_status = current_event.get('status', 'Unknown')
 	if current_status == status:
-		return {'message': 'Event status is the same, no need to update'}
+		return {'message': 'Event status is the same, no need to update', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -213,10 +216,10 @@ def update_event_status(event_id: str, status: str) -> dict:
 def update_event_description(event_id: str, description: str) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_description = current_event.get('description', 'Unknown')
 	if current_description == description:
-		return {'message': 'Event description is the same, no need to update'}
+		return {'message': 'Event description is the same, no need to update', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
@@ -236,10 +239,10 @@ def update_event_description(event_id: str, description: str) -> dict:
 def update_event_tag2(event_id: str, tag2: str) -> dict:
 	current_event = get_event(event_id)
 	if not current_event:
-		return {'message': 'Event not found'}
+		return {'message': 'Event not found', 'event_id': event_id}
 	current_tag2 = current_event.get('tag_2', 'Unknown')
 	if current_tag2 == tag2:
-		return {'message': 'Event tag2 is the same, no need to update'}
+		return {'message': 'Event tag2 is the same, no need to update', 'event_id': event_id}
 
 	response = events_table.update_item(
 		Key={'event_id': event_id},
