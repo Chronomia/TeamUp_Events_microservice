@@ -46,10 +46,10 @@ async def log_updates_middleware(request: Request, call_next):
 		body_data = json.loads(response_body[0].decode())
 		event_id = body_data.get('event_id')
 
-		try:
-			details = generate_create_log_details(body_data)
-		except json.JSONDecodeError:
-			details = body_data.get('message')
+		# try:
+		details = generate_create_log_details(body_data)
+		# except json.JSONDecodeError:
+		# 	details = body_data.get('message')
 
 		# Log data to DynamoDB
 		log_item = {
@@ -69,10 +69,10 @@ async def log_updates_middleware(request: Request, call_next):
 		body_data = json.loads(response_body[0].decode())
 		event_id = body_data.get('event_id')
 
-		try:
-			details = generate_log_details(body_data)
-		except json.JSONDecodeError:
-			details = body_data.get('message')
+		# try:
+		details = generate_log_details(body_data)
+		# except json.JSONDecodeError:
+		# 	details = body_data.get('message')
 
 		# Log data to DynamoDB
 		log_item = {
@@ -132,6 +132,8 @@ def read_event(event_id: str):
 # middleware application
 def generate_log_details(body_data: dict):
 	details = ''
+	if 'message' in body_data.keys():
+		return body_data['message']
 	for key in body_data.keys():
 		if key.startswith('previous_'):
 			details += f"Event is updated from {key}: {body_data[key]}"
