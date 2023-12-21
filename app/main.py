@@ -91,7 +91,7 @@ async def log_updates_middleware(request: Request, call_next):
 
 @app.get("/")
 def root():
-	return {"message": "Welcome to the Event Management API!"}
+	return {'event_service_status': 'ONLINE'}
 
 # ===== For Logs =====
 
